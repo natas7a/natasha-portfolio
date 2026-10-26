@@ -1,0 +1,651 @@
+
+const QUESTIONS = [
+  ['How does an AI in the room change the way a group decides?', 'upf', 'See the AI peer study'],
+  ['How do we keep children safe around AI without taking away their say?', 'fellowship', 'See the Child Safety & AI Fellowship'],
+  ['How do interfaces shape trust, effort and critical thinking?', 'sunflower', 'See Sunflower']
+];
+const MOMENTS = [
+  { d: '2025-06', when: 'Jun 2025', label: 'Design-fiction workshops, IGPDE' },
+  { d: '2025-11', when: 'Nov 2025', label: 'Conclusions of the 14th UNESCO Youth Forum (co-author)' },
+  { d: '2025-12', when: 'Dec 2025', label: 'Panel: Advancing Human Rights at UN80' },
+  { d: '2026-06', when: 'Jun 2026', label: 'Article: The geopolitics of AI sovereignty (Chatham House)' },
+  { d: '2026-07', when: 'Jul 2026', label: 'Talk: UNESCO\'s 80th anniversary' },
+  { d: '2026-09', when: 'Sep 2026', label: 'Presented the Call by Young People to UNESCO\'s Director-General' },
+  { d: '2026-10', when: 'Oct 2026', label: 'French National Commission for UNESCO event', up: true },
+  { d: '2026-12', when: 'Dec 2026', label: 'French association for the United Nations event', up: true }
+];
+const TALKS = [
+  { y: 2025, m: 'Jun', kind: 'Workshops', head: 'Design-fiction workshops', host: 'Senior civil servants, IGPDE (French Ministry of Economy)' },
+  { y: 2025, m: 'Dec', kind: 'Panel', head: 'Advancing Human Rights at UN80', host: 'UNESCO, invited by the EU Delegation' },
+  { y: 2026, m: 'Jul', kind: 'Talk', head: 'UNESCO\'s 80th anniversary', host: 'Young people\'s views on peace' },
+  { y: 2026, m: 'Sep', kind: 'Presentation', head: 'Call by Young People', host: 'To UNESCO\'s Director-General, as one of 11 young leaders' },
+  { y: 2026, m: 'Oct', up: true, kind: 'Upcoming', head: 'French National Commission for UNESCO', host: 'Paris' },
+  { y: 2026, m: 'Dec', up: true, kind: 'Upcoming', head: 'French association for the United Nations', host: '' }
+];
+const WRITING = [
+  { y: 2025, m: 'November', kind: 'Policy text', title: 'Conclusions of the 14th UNESCO Youth Forum', where: 'UNESCO 43rd General Conference', role: 'Co-author', note: 'Presented to UNESCO member states.', url: 'https://unesdoc.unesco.org/ark:/48223/pf0000396223' },
+  { y: 2026, m: 'June', kind: 'Article', role: 'Author', title: 'The geopolitics of AI sovereignty: navigating divisions between industry and academia', where: 'Chatham House Common Futures Conversations', url: 'https://medium.com/@ch_commonfutures/the-geopolitics-of-ai-sovereignty-navigating-divisions-between-industry-and-academia-658c176da12d' },
+  { y: 2026, m: 'June', kind: 'Conference poster', role: 'Co-author', title: 'Linking the IPBES Nature Futures Framework with the Transformative Change and Nexus assessments', where: 'World Biodiversity Forum, Davos', url: 'https://doi.org/10.5194/wbf2026-794' },
+  { y: 2026, m: 'September', kind: 'Policy text', role: 'Co-author', title: 'Call by Young People for a New Culture of Peace', where: 'UNESCO', note: 'Written with ten young leaders from every region.', url: 'https://www.unesco.org/sites/default/files/medias/fichiers/2026/09/FINAL%20-%20Call%20by%20Young%20People%20for%20a%20New%20Culture%20of%20Peace%20-cover.pdf' }
+];
+const FLOWS = {
+  upf: { cap: 'From conversations to outputs.', steps: [['26', 'video calls, each with two people and an AI peer'], ['52', 'participants: 40 students, 12 educators'], ['2,244', 'lines of conversation coded'], ['Networks', 'of which contributions follow which'], ['2', 'outputs: an article and a booklet']] },
+  fellowship: { cap: 'From applications to a running programme.', steps: [['30+', 'countries applied'], ['33', 'participants selected'], ['3', 'cohorts'], ['6', 'weeks of programme'], ['8', 'people on the team']] },
+  sunflower: { cap: 'How a reader gets from a claim to its source.', steps: [['Open data', 'public sources'], ['Summary', 'in plain language'], ['Source', 'shown next to the summary'], ['Checked', 'by the reader in the original']] },
+  unesco: { cap: 'The UNESCO80 youth consultation, end to end.', steps: [['145', 'young leaders consulted'], ['135', 'countries'], ['1', 'Call by Young People'], ['11', 'young leaders presented it'], ['Sep 2026', 'to the Director-General and the French Minister']] }
+};
+const LOOP = [
+  ['Look ahead', 'Use foresight to ask what could happen, not only what is happening now.', 'unesco', 'UNESCO80 reflection on the future'],
+  ['Study people', 'Watch how people actually talk, learn and decide with technology.', 'upf', 'AI peer study'],
+  ['Translate', 'Turn findings into language and formats non-specialists can use.', 'sunflower', 'Sunflower'],
+  ['Teach and share', 'Bring it back to people through programmes, workshops and guides.', 'fellowship', 'Child Safety & AI Fellowship']
+];
+const METHODS_RAW = [
+  ['foresight', 'Foresight and design fiction'], ['studies', 'User studies and testing'], ['coding', 'Conversation coding'],
+  ['analysis', 'Data analysis (R, Python)'], ['design', 'Design, user experience and web'], ['plain', 'Writing for non-specialists'],
+  ['programme', 'Programme design and facilitation'], ['policy', 'Policy drafting'], ['speaking', 'Public speaking'], ['team', 'Team leadership']
+];
+const METHODS = METHODS_RAW.slice().sort((a, b) => a[1].localeCompare(b[1]));
+// Theme lists on every project read alphabetically.
+WORK.forEach(w => w.themes.sort((a, b) => THEMES[a].name.localeCompare(THEMES[b].name)));
+const USES = {
+  upf: ['studies', 'coding', 'analysis', 'plain'],
+  fellowship: ['foresight', 'design', 'plain', 'programme', 'team'],
+  sunflower: ['design'],
+  unesco: ['plain', 'policy', 'speaking'],
+  climate: ['design', 'plain', 'programme', 'team'],
+  igpde: ['foresight', 'programme'],
+  designai: ['studies', 'plain', 'design'],
+  passculture: ['studies']
+};
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const root = document.documentElement;
+const store = {
+  get(k) { try { return localStorage.getItem('nl6-' + k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem('nl6-' + k, v); } catch (e) {} }
+};
+const themeNames = ts => ts.map(t => THEMES[t].name).join(' · ');
+const cases = WORK.filter(w => w.case);
+const narrow = () => matchMedia('(max-width: 900px)').matches;
+const still = () => root.classList.contains('calm') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Question balloons ---------- */
+(function () {
+  const list = $('#q-points'), svg = $('#bl-strings'), qs = $('.qs');
+  if (!list) return;
+  const DX = ['-3rem', '1.5rem', '5rem'];
+  list.innerHTML = QUESTIONS.map(([q, id, label], i) =>
+    '<li class="bl" style="--i:' + i + ';--dx:' + DX[i] + '"><a class="bl-ball" href="#' + id + '" aria-label="Question ' + (i + 1) + ': ' + q + ' ' + label + '">' +
+    '<span class="bl-mark" aria-hidden="true">?</span><span class="bl-body" aria-hidden="true"><span class="bl-q">' + q + '</span><span class="bl-more">' + label + ' →</span></span></a></li>').join('');
+  const items = [...list.children], balls = items.map(li => li.querySelector('.bl-ball'));
+  let open = -1, closeTimer;
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+  const set = i => {
+    clearTimeout(closeTimer); open = i;
+    if (i > -1) {
+      // Drift sideways as designed, but never so far that the grown balloon leaves the screen
+      const li = items[i], r = li.getBoundingClientRect(), c = r.left + r.width / 2, half = 7.5 * rem + 12;
+      const want = c + parseFloat(DX[i]) * rem;
+      const x = Math.min(innerWidth - half, Math.max(half, want));
+      li.style.setProperty('--dx', (x - c).toFixed(1) + 'px');
+    }
+    items.forEach((li, j) => li.classList.toggle('open', i === j));
+  };
+  const later = () => { clearTimeout(closeTimer); closeTimer = setTimeout(() => set(-1), 450); };
+  let firstTap = -1, lastPointer = 'mouse';
+  document.addEventListener('pointerdown', e => { lastPointer = e.pointerType; if (lastPointer !== 'mouse' && open > -1 && !qs.contains(e.target)) set(-1); }, true);
+  items.forEach((li, i) => {
+    li.addEventListener('mouseenter', () => set(i));
+    li.addEventListener('mouseleave', () => { if (lastPointer === 'mouse') later(); });
+    balls[i].addEventListener('focus', () => set(i));
+    balls[i].addEventListener('blur', () => { if (lastPointer === 'mouse') later(); });
+    // On touch screens the first tap lets the balloon float up; a second tap opens the project
+    balls[i].addEventListener('pointerdown', e => { firstTap = e.pointerType !== 'mouse' && open !== i ? i : -1; });
+    balls[i].addEventListener('click', e => { if (firstTap === i) { e.preventDefault(); firstTap = -1; set(i); } });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open > -1) set(-1); });
+  // Strings run from each anchor on the row up to its balloon, redrawn every frame so they follow the float
+  let visible = true;
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(qs);
+  const draw = () => {
+    if (visible && !$('#home-view').hidden) {
+      const base = qs.getBoundingClientRect();
+      svg.innerHTML = items.map((li, i) => {
+        const a = li.getBoundingClientRect(), b = balls[i].getBoundingClientRect();
+        const ax = a.left + a.width / 2 - base.left, ay = a.bottom - base.top;
+        const kx = b.left + b.width / 2 - base.left, ky = b.bottom - base.top + 4;
+        const cx = ax + (kx - ax) * .15, cy = (ay + ky) / 2;
+        const on = i === open ? ' class="on"' : '';
+        return '<path' + on + ' d="M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + kx.toFixed(1) + ' ' + ky.toFixed(1) + '"></path>' +
+          '<path class="knot' + (i === open ? ' on' : '') + '" d="M' + (kx - 3).toFixed(1) + ' ' + ky.toFixed(1) + ' L' + kx.toFixed(1) + ' ' + (ky - 5).toFixed(1) + ' L' + (kx + 3).toFixed(1) + ' ' + ky.toFixed(1) + 'Z"></path>' +
+          '<circle class="knot" cx="' + ax.toFixed(1) + '" cy="' + ay.toFixed(1) + '" r="2"></circle>';
+      }).join('');
+    }
+    requestAnimationFrame(draw);
+  };
+  requestAnimationFrame(draw);
+})();
+
+/* ---------- Themes graph ---------- */
+(function () {
+  const tg = $('#tg'), themesEl = $('#tg-themes'), projEl = $('#tg-projects'), svg = $('#tg-svg');
+  Object.entries(THEMES).forEach(([k, t]) => {
+    const li = document.createElement('li');
+    li.innerHTML = '<button type="button" data-k="' + k + '" aria-pressed="false" aria-controls="tg-projects">' + t.name + '</button>';
+    themesEl.appendChild(li);
+  });
+  let active = null, leaveTimer;
+  function activate(k) {
+    clearTimeout(leaveTimer);
+    if (active === k) return;
+    active = k;
+    themesEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.k === k)));
+    const items = WORK.filter(w => w.themes.includes(k)).sort((a, b) => (b.case ? 1 : 0) - (a.case ? 1 : 0));
+    projEl.innerHTML = items.map((w, i) => '<li style="--i:' + i + '">' +
+      (w.case ? '<a href="#' + w.id + '">' + w.short + '<small>' + w.period + '</small></a>'
+              : '<span class="np">' + w.short + '<small>' + w.when + '</small></span>') + '</li>').join('');
+    if (!narrow()) {
+      const shift = tg.clientWidth - themesEl.offsetWidth;
+      tg.style.setProperty('--shift', shift + 'px');
+    }
+    tg.classList.add('active');
+    drawLines(k);
+  }
+  function drawLines(k) {
+    svg.innerHTML = '';
+    if (narrow()) return;
+    const box = tg.getBoundingClientRect();
+    const btn = themesEl.querySelector('button[data-k="' + k + '"]');
+    const shift = parseFloat(getComputedStyle(tg).getPropertyValue('--shift')) || 0;
+    const wasActive = themesEl.getBoundingClientRect().left - box.left < 4;
+    const b = btn.getBoundingClientRect();
+    // the column may still be moving; use its final position
+    const x1 = (wasActive ? b.right : b.right - shift) - box.left;
+    const y1 = b.top + b.height / 2 - box.top;
+    let paths = '';
+    projEl.querySelectorAll('li').forEach(li => {
+      const r = li.getBoundingClientRect();
+      const x2 = r.left - box.left - 10, y2 = r.top + 11 - box.top;
+      const mx = (x1 + x2) / 2;
+      const d = 'M' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2;
+      const len = Math.hypot(x2 - x1, y2 - y1) * 1.25;
+      paths += '<path d="' + d + '" style="--len:' + len + ';animation-delay:.2s"></path><circle cx="' + x2 + '" cy="' + y2 + '" r="3" fill="var(--accent)"></circle>';
+    });
+    svg.setAttribute('viewBox', '0 0 ' + box.width + ' ' + box.height);
+    svg.innerHTML = paths;
+  }
+  function deactivate() {
+    active = null;
+    tg.classList.remove('active');
+    themesEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    svg.innerHTML = '';
+  }
+  themesEl.addEventListener('mouseover', e => { const b = e.target.closest('button'); if (b && !narrow()) activate(b.dataset.k); });
+  themesEl.addEventListener('focusin', e => { const b = e.target.closest('button'); if (b) activate(b.dataset.k); });
+  themesEl.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (narrow() && active === b.dataset.k) deactivate(); else { active = null; activate(b.dataset.k); }
+  });
+  tg.addEventListener('mouseleave', () => { if (!narrow()) leaveTimer = setTimeout(deactivate, 300); });
+  tg.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
+  tg.addEventListener('focusout', e => { if (!tg.contains(e.relatedTarget) && !narrow()) deactivate(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && active) deactivate(); });
+  window.addEventListener('resize', () => { if (active) { const k = active; deactivate(); if (!narrow()) activate(k); } });
+})();
+
+/* ---------- Opening screen to Projects: a sideways slide driven by scroll ---------- */
+const panWrap = $('#pan-wrap'), pan = $('#pan'), panTrack = $('#pan-track'), panCue = $('#pan-cue');
+let panD = 0, panStep = 0, panLast = 0, panLastY = 0;
+const panWanted = () => innerWidth > 900 && !still() && !$('#home-view').hidden;
+function layoutPan() {
+  layoutTalks();
+  const on = panWanted();
+  root.classList.toggle('pan-on', on);
+  if (!on) { panTrack.style.left = ''; root.style.removeProperty('--pan-h'); return; }
+  const w = panTrack.clientWidth, gap = innerWidth - w;
+  root.style.setProperty('--pan-gap', gap + 'px');
+  // The theme lines run exactly to the edge of the screen
+  root.style.setProperty('--pan-reach', Math.max(0, innerWidth - panTrack.getBoundingClientRect().right + parseFloat(getComputedStyle(panTrack).left || 0)) + 'px');
+  panStep = w + gap; panD = Math.round(innerHeight * .9);
+  root.style.setProperty('--pan-h', (pan.offsetHeight + panD) + 'px');
+  movePan();
+}
+function movePan() {
+  if (!root.classList.contains('pan-on')) return;
+  const t = Math.min(1, Math.max(0, (scrollY - panWrap.offsetTop) / panD));
+  const e = t * t * (3 - 2 * t);
+  // Shifted with left rather than a transform, so the sticky project index still works
+  panTrack.style.left = (-e * panStep).toFixed(1) + 'px';
+  panCue.style.opacity = t > .05 ? 0 : 1;
+  panLast = t; panLastY = scrollY;
+  drawFlow(t);
+}
+// Each theme's line runs off the screen and arrives at the projects that share it
+const flow = $('#pan-flow'), tgEl = $('#tg');
+function drawFlow(t) {
+  const past = scrollY - panWrap.offsetTop - panD;
+  const fade = tgEl.classList.contains('active') || flowWait ? 0 : Math.max(0, 1 - Math.max(0, past) / 250);
+  flow.style.opacity = fade;
+  if (!fade) return;
+  const box = pan.getBoundingClientRect();
+  flow.setAttribute('width', box.width); flow.setAttribute('height', box.height);
+  let h = '';
+  document.querySelectorAll('#tg-themes button').forEach(b => {
+    const k = b.dataset.k, r = b.getBoundingClientRect();
+    const x1 = r.right - box.left, y1 = r.top + r.height / 2 - box.top;
+    cases.filter(w => w.themes.includes(k)).forEach(w => {
+      const a = pjIndex.querySelector('a[data-story="' + w.id + '"]'); if (!a) return;
+      const ra = a.getBoundingClientRect();
+      const x2 = ra.left - box.left - 4, y2 = ra.top + Math.min(ra.height / 2, 14) - box.top;
+      const dx = Math.max(40, (x2 - x1) * .5);
+      h += '<path data-k="' + k + '" data-w="' + w.id + '" d="M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' C' + (x1 + dx).toFixed(1) + ' ' + y1.toFixed(1) + ' ' + (x2 - dx).toFixed(1) + ' ' + y2.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + '"></path>';
+    });
+  });
+  cases.forEach(w => {
+    const a = pjIndex.querySelector('a[data-story="' + w.id + '"]'); if (!a) return;
+    const ra = a.getBoundingClientRect();
+    h += '<circle data-w="' + w.id + '" cx="' + (ra.left - box.left - 4).toFixed(1) + '" cy="' + (ra.top + Math.min(ra.height / 2, 14) - box.top).toFixed(1) + '" r="2.5"></circle>';
+  });
+  flow.innerHTML = h;
+  if (flowHl) highlightFlow(flowHl[0], flowHl[1]);
+}
+let flowHl = null;
+function highlightFlow(attr, val) {
+  flowHl = val ? [attr, val] : null;
+  flow.classList.toggle('focus', !!val);
+  flow.querySelectorAll('path, circle').forEach(el => el.classList.toggle('hl', !!val && el.dataset[attr] === val));
+}
+document.addEventListener('mouseover', e => {
+  if (!root.classList.contains('pan-on')) return;
+  const a = e.target.closest('#pj-index a'), b = e.target.closest('#tg-themes button');
+  if (a) highlightFlow('w', a.dataset.story); else if (!b) { if (flowHl) highlightFlow(); }
+});
+// While the themes slide back after a hover, keep the curves hidden; redraw once they have settled,
+// otherwise the curves are drawn from where the themes were mid-slide and stay behind
+let flowWait = 0, flowSettle = 0;
+new MutationObserver(() => {
+  clearTimeout(flowSettle);
+  if (tgEl.classList.contains('active')) { flowWait = 0; movePan(); return; }
+  flowWait = 1; flow.style.opacity = 0;
+  flowSettle = setTimeout(() => { flowWait = 0; movePan(); }, 520);
+}).observe(tgEl, { attributes: true, attributeFilter: ['class'] });
+$('#tg-themes').addEventListener('transitionend', e => {
+  if (e.target.id !== 'tg-themes' || !flowWait || tgEl.classList.contains('active')) return;
+  clearTimeout(flowSettle); flowWait = 0; movePan();
+});
+// Scroll to anything on the page, allowing for the slide: inside the slide, a position counts from when it has finished
+function goTo(el, block, smooth) {
+  let y;
+  if (root.classList.contains('pan-on') && pan.contains(el)) {
+    if (el.id === 'top') y = 0;
+    else {
+      const off = el.getBoundingClientRect().top - pan.getBoundingClientRect().top;
+      y = panWrap.offsetTop + panD + off - (block === 'center' ? (innerHeight - el.offsetHeight) / 2 : 0);
+      if (el.id === 'projects') y = panWrap.offsetTop + panD;
+      else if (block !== 'center') y -= parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    }
+  } else {
+    y = el.getBoundingClientRect().top + scrollY - (block === 'center' ? (innerHeight - el.offsetHeight) / 2 : parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
+  }
+  scrollTo({ top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto' });
+}
+/* ---------- Talks: scrolling down travels along the timeline, then carries on down to Writing ---------- */
+const tkWrap = $('#tk-wrap');
+let tkDist = 0, tkTop = 96;
+function layoutTalks() {
+  const on = panWanted();
+  root.classList.toggle('tk-on', on);
+  const strip = $('#talk-list .strip');
+  if (!on || !strip) { if (strip) strip.style.transform = ''; root.style.removeProperty('--tk-h'); return; }
+  tkDist = Math.max(0, strip.offsetWidth - $('#talk-list').clientWidth);
+  const pinH = tkWrap.firstElementChild.offsetHeight;
+  tkTop = Math.max(96, (innerHeight - pinH) / 2);
+  root.style.setProperty('--tk-top', tkTop + 'px');
+  root.style.setProperty('--tk-h', (pinH + tkDist) + 'px');
+  moveTalks();
+}
+function moveTalks() {
+  if (!root.classList.contains('tk-on')) return;
+  const x = Math.min(tkDist, Math.max(0, tkTop - tkWrap.getBoundingClientRect().top));
+  $('#talk-list .strip').style.transform = 'translateX(' + (-x).toFixed(1) + 'px)';
+  $('.tk-cue').style.opacity = x > tkDist - 20 ? 0 : 1;
+}
+addEventListener('scroll', moveTalks, { passive: true });
+addEventListener('scroll', movePan, { passive: true });
+addEventListener('resize', layoutPan);
+addEventListener('load', layoutPan);
+if (document.fonts) document.fonts.ready.then(layoutPan);
+if ('ResizeObserver' in window) new ResizeObserver(() => layoutPan()).observe($('#projects'));
+
+/* ---------- Images: a real picture when a src is given, otherwise a labelled placeholder ---------- */
+function figure(img, cls) {
+  if (!img) return '';
+  if (img.src) return '<figure class="' + cls + '"><img src="' + img.src + '" alt="' + (img.alt || img.label) + '" loading="lazy"><figcaption>' + img.label + '</figcaption></figure>';
+  return '<figure class="' + cls + ' ph"><div class="ph-box"><span class="ph-icon" aria-hidden="true"></span><span>Image to add</span></div><figcaption>' + img.label + '</figcaption></figure>';
+}
+
+document.querySelectorAll('img[data-photo]').forEach(i => { i.src = PHOTOS[i.dataset.photo]; i.loading = 'lazy'; });
+
+/* ---------- Projects view ---------- */
+const storyBox = $('#stories'), pjIndex = $('#pj-index');
+cases.forEach(w => {
+  const a = document.createElement('a');
+  a.className = 'story'; a.href = '#' + w.id; a.id = 'story-' + w.id;
+  a.setAttribute('aria-label', w.title + '. ' + w.role + ', ' + w.org + '. Open the full project.');
+  a.innerHTML = figure(w.images && w.images[0], 'story-thumb') + '<div class="story-main">' +
+    '<div class="story-top"><div>' +
+      '<div class="story-meta"><span>' + w.org + '</span><span>' + w.period + '</span><span>' + w.role + '</span></div>' +
+      '<h3>' + w.title + '</h3><p class="lede">' + w.lede + '</p>' +
+    '</div><span class="status' + (w.end ? '' : ' live') + '">' + w.status + '</span></div>' +
+    (w.nums ? '<dl class="story-nums">' + w.nums.map(([n, t]) => '<div><dt>' + n + '</dt><dd>' + t + '</dd></div>').join('') + '</dl>' : '') +
+    '</div>' +
+    '<div class="steps-wrap"><div><ol class="steps" style="--n:' + w.steps.length + '" aria-label="Steps">' +
+      w.steps.map((s, i) => '<li class="' + (s.done ? 'done' : '') + '" style="--i:' + i + '"><b>' + s.t + '</b><span>' + s.d + '</span></li>').join('') +
+    '</ol></div></div>' +
+    '<div class="story-foot"><span class="cue">Read the full project</span></div>';
+  storyBox.appendChild(a);
+  const li = document.createElement('li');
+  li.innerHTML = '<a href="#story-' + w.id + '" data-story="' + w.id + '">' + w.short + '<span class="th"><span>' + themeNames(w.themes) + '</span></span></a>';
+  pjIndex.appendChild(li);
+});
+pjIndex.addEventListener('click', e => {
+  const a = e.target.closest('a'); if (!a) return;
+  e.preventDefault();
+  const card = document.getElementById('story-' + a.dataset.story);
+  goTo(card, 'start', !still());
+  card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1200);
+  card.focus({ preventScroll: true });
+});
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    pjIndex.querySelectorAll('a').forEach(a => a.dataset.story === en.target.id.slice(6) ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  }), { rootMargin: '-40% 0px -55% 0px' });
+  storyBox.querySelectorAll('.story').forEach(s => io.observe(s));
+}
+
+/* ---------- Timeline view ---------- */
+(function () {
+  const startY = 2023, endY = 2027, span = (endY - startY) * 12;
+  const pos = ym => { const [y, m] = ym.split('-').map(Number); return ((y - startY) * 12 + (m - 1)) / span * 100; };
+  const grid = [2024, 2025, 2026].map(y => '<span class="tl-grid" aria-hidden="true" style="left:' + ((y - startY) * 12 / span * 100) + '%"></span>').join('');
+  const nowLine = '<span class="tl-now" aria-hidden="true" style="left:' + pos(NOW) + '%"></span>';
+  let html = '<div class="tl-axis"><span class="spacer"></span><div class="tl-years">';
+  for (let y = startY; y <= endY; y++) html += '<span style="left:' + ((y - startY) * 12 / span * 100) + '%">' + y + '</span>';
+  html += '</div></div>';
+  WORK.slice().sort((a, b) => a.start < b.start ? 1 : -1).forEach(w => {
+    const left = pos(w.start), right = Math.min(100, pos(w.end || NOW) + 100 / span);
+    const attrs = 'class="tl-bar' + (w.case ? ' is-case' : '') + (w.end ? '' : ' ongoing') + '" style="left:' + left + '%;width:' + Math.max(right - left, 1.5) + '%"';
+    const bar = w.case ? '<button type="button" ' + attrs + ' data-open="' + w.id + '" aria-label="Open ' + w.short + '"></button>' : '<span ' + attrs + ' aria-hidden="true"></span>';
+    html += '<div class="tl-row"><div class="name">' + w.short + '<small>' + (w.case ? w.period : w.when) + '</small></div><div class="tl-track">' + grid + nowLine + bar + '</div></div>';
+  });
+  html += '<div class="tl-row moments"><div class="name">Talks and writing<small>Hover over a diamond for details</small></div><div class="tl-track">' + grid + nowLine +
+    MOMENTS.map(m => { const l = pos(m.d) + 100 / span / 2; return '<button type="button" class="moment' + (m.up ? ' up' : '') + (l > 80 ? ' edge-r' : '') + '" style="left:' + l + '%" aria-label="' + m.label + ', ' + m.when + (m.up ? ' (upcoming)' : '') + '"><span class="tip" aria-hidden="true">' + m.label + '<small>' + m.when + (m.up ? ' · upcoming' : '') + '</small></span></button>'; }).join('') +
+    '</div></div>';
+  html += '<div class="tl-legend"><span class="today">Today</span><span>Dark bars open a full project</span><span>Faded ends mean ongoing</span><span>Hollow diamonds are upcoming</span></div>';
+  const box = $('#timeline');
+  box.innerHTML = html;
+  box.addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) location.hash = b.dataset.open; });
+})();
+
+/* ---------- Methods matrix ---------- */
+(function () {
+  const rows = WORK.filter(w => USES[w.id]);
+  let h = '<table><caption class="sr-only">Methods used in each piece of work</caption><thead><tr><th scope="col"><span class="sr-only">Work</span></th>' +
+    METHODS.map(([k, n], i) => '<th scope="col" data-col="' + i + '">' + n + '</th>').join('') + '</tr></thead><tbody>';
+  rows.forEach(w => {
+    const name = w.case ? '<a href="#' + w.id + '">' + w.short + '</a>' : w.short;
+    h += '<tr><th scope="row">' + name + '<small>' + (w.case ? w.period : w.when) + '</small></th>' +
+      METHODS.map(([k], i) => { const on = USES[w.id].includes(k); return '<td data-col="' + i + '"><i class="' + (on ? '' : 'no') + '" aria-hidden="true"></i><span class="sr-only">' + (on ? 'Yes' : 'No') + '</span></td>'; }).join('') + '</tr>';
+  });
+  const counts = METHODS.map(([k]) => rows.filter(w => USES[w.id].includes(k)).length), max = Math.max(...counts);
+  h += '</tbody><tfoot><tr><th scope="row">Used in</th>' + counts.map((c, i) => '<td data-col="' + i + '">' + c + '<span class="bar" aria-hidden="true" style="height:' + (c / max * 1.6) + 'rem"></span></td>').join('') + '</tr></tfoot></table>' +
+    '<p class="matrix-note">Each square is a method I used in that piece of work. Hover to follow a row or a column.</p>';
+  const box = $('#matrix'); box.innerHTML = h;
+  const clear = () => box.querySelectorAll('.hl, .col-hl').forEach(el => el.classList.remove('hl', 'col-hl'));
+  box.addEventListener('mouseover', e => {
+    const cell = e.target.closest('td, th'); if (!cell) return;
+    clear();
+    const tr = cell.closest('tbody tr'); if (tr) tr.classList.add('hl');
+    const col = cell.dataset.col; if (col !== undefined) box.querySelectorAll('[data-col="' + col + '"]').forEach(c => c.classList.add('col-hl'));
+  });
+  box.addEventListener('mouseleave', clear);
+})();
+
+/* ---------- Talks: a dated strip with today marked ---------- */
+(function () {
+  const ev = t => '<li class="st' + (t.up ? ' up' : '') + '"><span class="st-date">' + t.m + ' ' + t.y + '</span><i class="st-dot" aria-hidden="true"></i>' +
+    '<span class="st-body"><span class="st-kind">' + t.kind + '</span><b>' + t.head + '</b>' + (t.host ? '<span class="st-host">' + t.host + '</span>' : '') + '</span></li>';
+  const past = TALKS.filter(t => !t.up), up = TALKS.filter(t => t.up);
+  $('#talk-list').innerHTML = '<ol class="strip">' + past.map(ev).join('') +
+    '<li class="st-now" aria-label="Today"><span aria-hidden="true">Today</span></li>' + up.map(ev).join('') + '</ol>';
+})();
+
+/* ---------- Writing: each text as a page ---------- */
+$('#write-list').innerHTML = WRITING.slice().reverse().map(w =>
+  '<a class="page" href="' + w.url + '" target="_blank" rel="noopener">' +
+  '<span class="wk">' + w.kind + '</span><h3>' + w.title + '</h3><span class="rule" aria-hidden="true"></span>' +
+  '<span class="wf"><span>' + w.where + '<br>' + w.m + ' ' + w.y + ' · ' + w.role + '</span><span class="wa" aria-hidden="true">↗</span></span>' +
+  '<span class="sr-only"> (opens in a new tab)</span></a>').join('');
+
+/* ---------- How I work loop: all four stages sit around the ring; choosing one highlights it ---------- */
+(function () {
+  const wrap = $('#loop-scroll'), btns = [...document.querySelectorAll('#loop-nodes button')];
+  const blocks = [...document.querySelectorAll('.lp')].sort((a, b) => a.dataset.i - b.dataset.i);
+  const ring = $('#ring-on'), C = 2 * Math.PI * 140;
+  ring.style.strokeDasharray = C + ' ' + C; ring.style.strokeDashoffset = C;
+  blocks.forEach((el, i) => {
+    const [, d, id, name] = LOOP[i];
+    el.querySelector('p').textContent = d;
+    const a = el.querySelector('a'); a.href = '#' + id; a.textContent = 'Example: ' + name;
+  });
+  const show = i => {
+    ring.style.strokeDashoffset = i < 0 ? C : C * (1 - i / 4);
+    $('#loop-num').textContent = i < 0 ? '4' : i + 1;
+    $('#loop-of').textContent = i < 0 ? 'stages' : 'of 4';
+    btns.forEach((b, j) => { b.setAttribute('aria-pressed', String(i === j)); b.classList.toggle('seen', i > -1 && j < i); });
+    blocks.forEach((el, j) => el.classList.toggle('dim', i > -1 && j !== i));
+  };
+  btns.forEach((b, i) => {
+    b.setAttribute('aria-label', 'Stage ' + (i + 1) + ': ' + LOOP[i][0]);
+    b.addEventListener('click', () => show(i));
+    b.addEventListener('mouseenter', () => show(i));
+    b.addEventListener('focus', () => show(i));
+  });
+  blocks.forEach((el, i) => el.addEventListener('mouseenter', () => show(i)));
+  wrap.addEventListener('mouseleave', () => show(-1));
+  wrap.addEventListener('focusout', e => { if (!wrap.contains(e.relatedTarget)) show(-1); });
+  show(-1);
+})();
+
+/* ---------- Views ---------- */
+function setView(v) {
+  const swap = () => { ['story', 'timeline'].forEach(k => $('#view-' + k).hidden = k !== v); if (window.layoutPan) layoutPan(); };
+  if (document.startViewTransition && !still() && store.get('view')) document.startViewTransition(swap); else swap();
+  document.querySelectorAll('#view-seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  store.set('view', v);
+}
+document.querySelectorAll('#view-seg button').forEach(b => b.onclick = () => { setView(b.dataset.v); $('#view-announce').textContent = b.textContent + ' view'; });
+setView(store.get('view') === 'timeline' ? 'timeline' : 'story');
+
+function setDetail(v) {
+  root.classList.toggle('full', v === 'full');
+  document.querySelectorAll('#detail-seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  store.set('detail', v);
+}
+document.querySelectorAll('#detail-seg button').forEach(b => b.onclick = () => setDetail(b.dataset.v));
+setDetail(store.get('detail') || 'brief');
+
+/* ---------- Case pages ---------- */
+function renderCase(w) {
+  const i = cases.indexOf(w);
+  const prev = cases[(i - 1 + cases.length) % cases.length], next = cases[(i + 1) % cases.length];
+  const secId = k => w.id + '-s' + k;
+  const body = w.sections.map(([h, content], k) => {
+    const row = s => s.replace(/ROW:([\d,]+)/g, (m, l) => '<div class="fig-row">' + l.split(',').map(n => figure(w.images && w.images[n], 'case-fig')).join('') + '</div>');
+    if (!h) return row(content).replace(/IMG:(\d)/g, (m, n) => figure(w.images && w.images[n], 'case-fig'));
+    let inner = content;
+    if (content === 'STEPS') {
+      inner = '<ol class="vsteps">' + w.steps.map((s, j) => '<li class="' + (s.done ? '' : 'todo') + '"><span class="n" aria-hidden="true">' + (j + 1) + '</span><b>' + s.t + (s.done ? '' : ' <span class="sr-only">(in progress)</span>') + '</b><span>' + s.d + '</span></li>').join('') + '</ol>';
+    } else if (content.startsWith('PILLS:')) {
+      inner = '<ul class="pills">' + content.slice(6).split('|').map(p => '<li>' + p + '</li>').join('') + '</ul>';
+    }
+    inner = row(inner).replace(/IMG:(\d)/g, (m, n) => figure(w.images && w.images[n], 'case-fig'));
+    inner = inner.replace('BOOKLET', CONFIG.bookletUrl ? '<p><a href="' + CONFIG.bookletUrl + '" target="_blank" rel="noopener">Read the booklet (PDF)</a></p>' : '');
+    const links = [];
+    if (CONFIG.untilTomorrowUrl) links.push('<a href="' + CONFIG.untilTomorrowUrl + '" target="_blank" rel="noopener">Until Tomorrow website</a>');
+    if (CONFIG.fellowshipUrl) links.push('<a href="' + CONFIG.fellowshipUrl + '" target="_blank" rel="noopener">Fellowship page and weekly readings</a>');
+    inner = inner.replace('LINKS', links.length ? '<p>' + links.join(' · ') + '</p>' : '');
+    return '<section class="case-sec" id="' + secId(k) + '" aria-labelledby="' + secId(k) + '-h"><h2 id="' + secId(k) + '-h">' + h + '</h2>' + inner + '</section>';
+  }).join('');
+  const toc = w.sections.map(([h], k) => h ? '<li><a href="#' + w.id + '" data-scroll="' + secId(k) + '">' + h + '</a></li>' : '').join('');
+  const f = FLOWS[w.id];
+  $('#case-view').innerHTML =
+    '<div class="case-top"><a class="case-back" href="#projects">← All projects</a>' + ('speechSynthesis' in window ? '<button type="button" class="listen" id="listen" aria-pressed="false">▶ Listen to this page</button>' : '') + '</div>' +
+    '<div class="case-eyebrow"><span>' + w.org + '</span><span>' + w.period + '</span></div>' +
+    '<h1 id="case-title" tabindex="-1">' + w.title + '</h1>' +
+    '<p class="case-lede">' + w.lede + '</p>' +
+    (w.brief ? '<div class="brief"><h2 class="sr-only">In short</h2>' + ['Problem', 'What I did', 'Result'].map((h, k) => '<div' + (k === 2 ? ' class="res"' : '') + '><h3>' + h + '</h3><p>' + w.brief[k] + '</p></div>').join('') + '</div>' : '') +
+    '<dl class="case-facts">' + w.facts.map(([k, v]) => '<div><dt>' + k + '</dt><dd>' + v + '</dd></div>').join('') + '</dl>' +
+    figure(w.images && w.images[0], 'case-cover') +
+    (f ? '<ol class="flow" style="--n:' + f.steps.length + '" aria-label="' + f.cap + '">' + f.steps.map(([b, t]) => '<li><b>' + b + '</b><span>' + t + '</span></li>').join('') + '</ol><p class="flow-cap">' + f.cap + '</p>' : '') +
+    '<div class="case-body"><nav aria-label="On this page"><ul class="case-toc">' + toc + '</ul></nav><div>' + body +
+      '<div class="case-next"><a href="#' + prev.id + '"><small>← Previous</small>' + prev.short + '</a><a href="#' + next.id + '" style="text-align:right"><small>Next →</small>' + next.short + '</a></div>' +
+    '</div></div>';
+  $('#case-view').querySelectorAll('[data-scroll]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); document.getElementById(a.dataset.scroll).scrollIntoView({ block: 'start' });
+  }));
+  const lb = $('#listen');
+  if (lb) lb.addEventListener('click', () => {
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); return; }
+    const text = [w.title, w.lede].concat(Array.from($('#case-view').querySelectorAll('.case-sec')).map(s => s.innerText)).join('. ');
+    const u = new SpeechSynthesisUtterance(text); u.lang = 'en-GB'; u.rate = .95;
+    u.onend = u.onerror = () => { lb.setAttribute('aria-pressed', 'false'); lb.textContent = '▶ Listen to this page'; };
+    lb.setAttribute('aria-pressed', 'true'); lb.textContent = '■ Stop';
+    speechSynthesis.speak(u);
+  });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      $('#case-view').querySelectorAll('.case-toc a').forEach(a => a.dataset.scroll === en.target.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+    }), { rootMargin: '-30% 0px -60% 0px' });
+    $('#case-view').querySelectorAll('.case-sec').forEach(s => io.observe(s));
+  }
+}
+
+let returnTo = null;
+function route() {
+  const id = location.hash.slice(1);
+  const w = cases.find(x => x.id === id);
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  const SUBS = { about: 'About', glance: 'At a glance' };
+  if (SUBS[id]) {
+    $('#home-view').hidden = true; $('#case-view').hidden = true; $('#dots').parentElement.hidden = true;
+    Object.keys(SUBS).forEach(k => $('#' + k + '-view').hidden = k !== id); layoutPan();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    $('#' + id + '-title').focus({ preventScroll: true });
+    document.title = SUBS[id] + ' · Natasha Litherland';
+    document.querySelectorAll('.nav-links a').forEach(a => a.dataset.nav === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+    return;
+  }
+  Object.keys(SUBS).forEach(k => $('#' + k + '-view').hidden = true);
+  if (w) {
+    if (!$('#case-view').hidden && $('#case-title') && $('#case-title').textContent === w.title) return;
+    renderCase(w);
+    $('#home-view').hidden = true; $('#dots').parentElement.hidden = true;
+    $('#case-view').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    $('#case-title').focus({ preventScroll: true });
+    document.title = w.short + ' · Natasha Litherland';
+    returnTo = w.id;
+  } else {
+    const wasCase = !$('#case-view').hidden;
+    $('#case-view').hidden = true;
+    $('#home-view').hidden = false; $('#dots').parentElement.hidden = false;
+    layoutPan();
+    document.title = 'Natasha Litherland';
+    if (id.startsWith('story-')) return;
+    if (wasCase && (!id || id === 'projects') && returnTo) {
+      const card = document.getElementById('story-' + returnTo);
+      if (card && !$('#view-story').hidden) { layoutPan(); goTo(card, 'center', false); card.focus({ preventScroll: true }); return; }
+    }
+    if (id && id !== 'main-content') { const t = document.getElementById(id); if (t) goTo(t, 'start', false); }
+  }
+}
+window.addEventListener('hashchange', route);
+route();
+
+/* ---------- Dot index ---------- */
+const homeSections = Array.from(document.querySelectorAll('#home-view [data-title]'));
+homeSections.forEach(s => {
+  const li = document.createElement('li');
+  li.innerHTML = '<a href="#' + s.id + '"><span class="dl">' + s.dataset.title + '</span><span class="dot" aria-hidden="true"></span></a>';
+  $('#dots').appendChild(li);
+});
+function markSection(id) {
+  document.body.classList.toggle('on-hero', id === 'top');
+  document.querySelectorAll('#dots a').forEach(a => a.getAttribute('href') === '#' + id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.dataset.nav === 'work' ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+}
+markSection('top');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) markSection(e.target.id); }), { rootMargin: '-45% 0px -50% 0px' });
+  homeSections.forEach(s => io.observe(s));
+}
+
+/* ---------- Display panel ---------- */
+const dBtn = $('#display-btn'), dPanel = $('#display-panel');
+function openPanel(open) { dPanel.hidden = !open; dBtn.setAttribute('aria-expanded', String(open)); if (open) dPanel.querySelector('button').focus(); }
+dBtn.addEventListener('click', () => openPanel(dPanel.hidden));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !dPanel.hidden) { openPanel(false); dBtn.focus(); } });
+document.addEventListener('click', e => { if (!dPanel.hidden && !e.target.closest('#display-panel') && !e.target.closest('#display-btn')) openPanel(false); });
+let size = parseInt(store.get('size'), 10) || 16;
+function applySize() { size = Math.min(24, Math.max(13, size)); root.style.fontSize = size + 'px'; store.set('size', size); }
+$('#size-down').onclick = () => { size -= 1; applySize(); };
+$('#size-up').onclick = () => { size += 1; applySize(); };
+$('#size-reset').onclick = () => { size = 16; applySize(); };
+applySize();
+function setColours(t) {
+  if (!t || t === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
+  document.querySelectorAll('#theme-seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === (t || 'system'))));
+  store.set('theme', t || 'system');
+}
+document.querySelectorAll('#theme-seg button').forEach(b => b.onclick = () => setColours(b.dataset.v));
+setColours(store.get('theme') || 'system');
+[['opt-readable', 'readable'], ['opt-spacious', 'spacious'], ['opt-calm', 'calm']].forEach(([id, cls]) => {
+  const el = document.getElementById(id);
+  el.checked = store.get(cls) === '1';
+  root.classList.toggle(cls, el.checked);
+  el.addEventListener('change', () => { root.classList.toggle(cls, el.checked); store.set(cls, el.checked ? '1' : '0'); layoutPan(); });
+});
+
+/* ---------- Contact ---------- */
+document.querySelectorAll('a.cv-dl').forEach(a => { a.href = CONFIG.cvUrl || CV_PDF; });
+if (CONFIG.bookingUrl) { $('#booking-link').href = CONFIG.bookingUrl; $('#booking-line').hidden = false; }
+document.querySelectorAll('a[data-reason]').forEach(a => a.addEventListener('click', () => {
+  const r = document.querySelector('input[name="reason"][value="' + a.dataset.reason + '"]'); if (r) r.checked = true;
+}));
+const reasonText = { collab: 'A project together', speak: 'Speaking or a workshop', chat: 'Advice or mentoring', role: 'A role or research placement', other: 'Hello' };
+$('#request-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('#f-name').value.trim(), note = $('#form-note');
+  if (!name) { note.removeAttribute('data-state'); note.textContent = 'Add your name so I know who is writing.'; $('#f-name').focus(); return; }
+  const reason = document.querySelector('input[name="reason"]:checked').value;
+  const org = $('#f-org').value.trim(), times = $('#f-times').value.trim(), msg = $('#f-msg').value.trim();
+  const subject = reasonText[reason] + ' · ' + name + (org ? ' (' + org + ')' : '');
+  const body = 'Hi Natasha,\n\n' + (msg ? msg + '\n\n' : '') + (times ? 'Times that could work for a call:\n' + times + '\n\n' : '') + name + (org ? '\n' + org : '');
+  window.location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  note.dataset.state = 'done';
+  note.textContent = 'Your email app should open now. If it doesn\'t, copy my address on the left.';
+});
+$('#copy-email').addEventListener('click', async e => {
+  const btn = e.currentTarget;
+  try { await navigator.clipboard.writeText(CONFIG.email); btn.textContent = 'Copied'; }
+  catch (err) { const r = document.createRange(); r.selectNodeContents($('#email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; }
+  setTimeout(() => btn.textContent = 'Copy', 2500);
+});
+</script>
+</body>
+</html>
