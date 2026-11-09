@@ -16,7 +16,6 @@ const MOMENTS = [
   { d: '2026-12', when: 'Dec 2026', label: 'Speaker: French association for the United Nations', up: true }
 ];
 const TALKS = [
-  { when: '2023 – 24', kind: 'Ambassador', head: 'pass Culture', host: 'Featured in their social media, including a TikTok video seen 76,900 times', img: PHOTOS.pc_tiktok, alt: 'Still from a pass Culture TikTok video: Natasha and another ambassador smiling at the camera, captioned C\'est parti!' },
   { y: 2024, m: 'Mar', kind: 'Organiser', head: 'EU.phorie at the Gaîté Lyrique, Paris', host: 'A day on Europe by and for young people, ahead of the 2024 European elections. I built it from scratch with seven other pass Culture ambassadors: debates, workshops, quizzes and DJ sets. <a href="https://pass.culture.fr/actualite/le-pass-culture-gaite-lyrique" target="_blank" rel="noopener">Article</a> · <a href="https://youtu.be/3UXxPrQTvnQ" target="_blank" rel="noopener">Video</a>', img: PHOTOS.euphorie, alt: 'Natasha and other pass Culture ambassadors standing in front of a screen at the Gaîté Lyrique, one of them speaking into a microphone' },
   { y: 2024, m: 'Nov', kind: 'Master of ceremonies', head: 'EUTOPIA Week 2024: Entrepreneurship for Impact', host: 'EUTOPIA alliance of European universities, Cergy, 25 to 29 November 2024', img: PHOTOS.eutopia_mc, alt: 'Natasha and a colleague holding EUTOPIA folders in a lecture hall, with the EUTOPIA Week 2024 title on the screen behind them' },
   { y: 2025, m: 'Aug', kind: 'Representative', head: 'Pan-European Summit on Climate Resilience, Vienna', host: 'Pontifical Academies of Sciences and Social Sciences. I represented Climate Cardinals and contributed to the summit\'s statement of outcomes.', img: PHOTOS.summit_stairs, alt: 'Natasha and three other young delegates with summit lanyards, standing on a white staircase' },
@@ -48,21 +47,36 @@ const LOOP = [
   ['Share back', 'Translate the findings for each audience: papers for researchers, plain-language materials for participants and the public, and workshops for practitioners and policymakers.', 'fellowship', 'Child Safety & AI Fellowship']
 ];
 const METHODS_RAW = [
-  ['foresight', 'Foresight'], ['studies', 'User studies'], ['coding', 'Conversation coding'],
-  ['analysis', 'Statistics'], ['algo', 'Algorithms'], ['ml', 'Machine learning'], ['prompt', 'Prompt engineering'],
+  ['foresight', 'Foresight'], ['studies', 'User studies'], ['coding', 'Qualitative coding'],
+  ['analysis', 'Statistics'], ['viz', 'Data visualisation'], ['algo', 'Algorithms'], ['ml', 'Machine learning'],
+  ['code', 'Programming'], ['model', 'Formal modelling'],
   ['design', 'Design and UX'], ['plain', 'Plain-language writing'], ['programme', 'Facilitation'], ['policy', 'Policy and public speaking']
+];
+// Each technical project gets its own row in the methods table; they all open the Technical projects section
+const TECH_ROWS = [
+  { id: 'cnn', short: 'Convolutional neural network', when: 'In progress', link: '#technical' },
+  { id: 'maze', short: 'Maze solver: A*, BFS and DFS', when: 'C++', link: '#technical' },
+  { id: 'mlp', short: 'Neural networks from scratch', when: 'C', link: '#technical' },
+  { id: 'petri', short: 'Petri net simulator', when: 'Python', link: '#technical' },
+  { id: 'breakout', short: 'Breakout agent, deep Q-learning', when: 'In progress, C', link: '#technical' },
+  { id: 'wine', short: 'Wine quality analysis', when: 'R', link: '#technical' }
 ];
 const METHODS = METHODS_RAW.slice().sort((a, b) => a[1].localeCompare(b[1]));
 // Theme lists on every project read alphabetically.
 WORK.forEach(w => w.themes.sort((a, b) => THEMES[a].name.localeCompare(THEMES[b].name)));
 const USES = {
-  upf: ['studies', 'coding', 'analysis', 'prompt', 'plain'],
-  technical: ['algo', 'ml', 'analysis'],
+  upf: ['studies', 'coding', 'analysis', 'plain'],
   fellowship: ['foresight', 'design', 'plain', 'programme'],
-  sunflower: ['design'],
-  unesco: ['plain', 'policy'],
+  sunflower: ['design', 'viz'],
+  unesco: ['coding', 'viz', 'plain', 'policy'],
   igpde: ['foresight', 'programme'],
-  passculture: ['studies']
+  passculture: ['studies'],
+  cnn: ['ml', 'analysis', 'code'],
+  maze: ['algo', 'code'],
+  mlp: ['ml', 'analysis', 'code'],
+  petri: ['algo', 'model', 'code'],
+  breakout: ['ml', 'code'],
+  wine: ['analysis', 'ml', 'viz']
 };
 
 /* ---------- Helpers ---------- */
@@ -304,7 +318,7 @@ const tkWrap = $('#tk-wrap');
 let tkDist = 0, tkTop = 96;
 const TK_SPEED = 2.5; // each pixel scrolled down moves the timeline this many pixels sideways
 function layoutTalks() {
-  const on = panWanted();
+  const on = false; // the timeline now scrolls sideways on its own instead of taking over the page scroll
   root.classList.toggle('tk-on', on);
   const strip = $('#talk-list .strip');
   if (!on || !strip) { if (strip) strip.style.transform = ''; root.style.removeProperty('--tk-h'); return; }
@@ -319,9 +333,18 @@ function moveTalks() {
   if (!root.classList.contains('tk-on')) return;
   const x = Math.min(tkDist, Math.max(0, (tkTop - tkWrap.getBoundingClientRect().top) * TK_SPEED));
   $('#talk-list .strip').style.transform = 'translateX(' + (-x).toFixed(1) + 'px)';
-  $('.tk-cue').style.opacity = x > tkDist - 20 ? 0 : 1;
 }
 addEventListener('scroll', moveTalks, { passive: true });
+(function () {
+  const list = $('#talk-list'), prev = $('#tk-prev'), next = $('#tk-next');
+  if (!list || !prev) return;
+  const step = () => Math.max(250, list.clientWidth * 0.75);
+  const sync = () => { prev.disabled = list.scrollLeft < 4; next.disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 4; };
+  prev.addEventListener('click', () => list.scrollBy({ left: -step() }));
+  next.addEventListener('click', () => list.scrollBy({ left: step() }));
+  list.addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync); setTimeout(sync, 300);
+})();
 addEventListener('scroll', movePan, { passive: true });
 addEventListener('resize', layoutPan);
 addEventListener('load', layoutPan);
@@ -405,7 +428,7 @@ if ('IntersectionObserver' in window) {
 
 /* ---------- Methods matrix ---------- */
 (function () {
-  const rows = WORK.concat([{ id: 'technical', short: 'Technical projects', when: 'Mostly coursework', link: '#technical' }]).filter(w => USES[w.id]);
+  const rows = WORK.concat(TECH_ROWS).filter(w => USES[w.id]);
   let h = '<table><caption class="sr-only">Methods used in each piece of work</caption><thead><tr><th scope="col"><span class="sr-only">Work</span></th>' +
     METHODS.map(([k, n], i) => '<th scope="col" data-col="' + i + '">' + n + '</th>').join('') + '</tr></thead><tbody>';
   rows.forEach(w => {
