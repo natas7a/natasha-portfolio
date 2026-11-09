@@ -5,7 +5,7 @@ const WORK = [
     short: 'AI peer study',
     org: 'Universitat Pompeu Fabra, TIDE group', period: 'Apr – Oct 2026', start: '2026-04', end: '2026-10',
     role: 'Research intern', status: 'Paper under review',
-    themes: ['hci', 'learning', 'access', 'impacts'],
+    themes: ['hci', 'alignment', 'learning', 'access', 'impacts'],
     lede: 'When two people talk a problem through with an AI chatbot in the room, does the way the chatbot joins in change how they reach a decision? I studied 26 conversations to find out, then gave the ideas back to the people who took part.',
     steps: [
       { t: 'Focus', d: 'Does an AI peer\'s conversational stance change how a group shares, agrees and builds on ideas?', done: true },
@@ -21,54 +21,20 @@ const WORK = [
       { src: PHOTOS.bk_learn, alt: 'Two booklet pages: AI as a tool, and an AI that guides rather than answers', label: 'What students wanted from AI in their learning' }
     ],
     nums: [['52', 'participants in 26 conversations'], ['2,244', 'lines of conversation coded']],
-    brief: ['Chatbots are starting to join group work as peers, but we know little about how the stance they take changes the way people build ideas together.', 'Ran a study with 52 participants, coded 2,244 lines of conversation and compared the two stances with transition network analysis in R and Python.', 'A first-author research article now under peer review, and a 34-page illustrated booklet that gave the ideas back to every participant.'],
+    brief: ['Chatbots are starting to join group work as peers, but we know little about how the stance they take changes the way people build ideas together.', 'Wrote the prompts for the AI peer\'s two stances, ran a study with 52 participants, coded 2,244 lines of conversation and compared the two stances with transition network analysis.', 'A first-author research article now under peer review, and a 34-page illustrated booklet that gave the ideas back to every participant.'],
     facts: [['Role', 'Research intern'], ['With', 'TIDE group, supervised by Prof. Davinia Hernández-Leo'], ['Participants', '52 (40 students, 12 educators)'], ['Outcome', 'First-author article under review; booklet']],
     sections: [
       ['The question', '<p>Chatbots are starting to join group discussions as peers rather than as tools. An AI peer can be designed to push a group towards agreement, or to question its ideas before it agrees. We know little about how that choice changes what people actually do in conversation: when they share reasons, when they agree, and when they build on each other\'s ideas.</p>'],
-      ['My role', '<p>I was a research intern in the TIDE group (Interactive &amp; Distributed Technologies for Education) at Universitat Pompeu Fabra in Barcelona, supervised by Prof. Davinia Hernández-Leo.</p><p>I ran the study sessions, coded and analysed the conversation data, <strong>wrote the research article</strong> and wrote the participant booklet. I worked in English and Spanish.</p>'],
+      ['My role', '<p>I was a research intern in the TIDE group (Interactive &amp; Distributed Technologies for Education) at Universitat Pompeu Fabra in Barcelona, supervised by Prof. Davinia Hernández-Leo.</p><p>I wrote the prompts that gave the AI peer its two stances, ran the study sessions, coded and analysed the conversation data, <strong>wrote the research article</strong> and wrote the participant booklet.</p>'],
       ['How the study worked', '<p>52 people took part: 40 students and recent graduates and 12 university educators, with 19 first languages between them. They met in 26 video calls, each with two people and an AI peer. Each person spent five minutes on an idea alone, then the group had 15 minutes to agree on one priority for how learning, teaching or assessment should change now that generative AI is here.</p><p>The AI peer spoke with a synthetic voice and took one of two <strong>conversational stances</strong>. A large language model proposed each of its turns, and a researcher checked or edited them before they were spoken (a Wizard-of-Oz set-up), so we could study the stances before building a fully autonomous agent. The study had ethics approval, and all data were pseudonymised.</p>'],
       ['Process', 'STEPS'],
       ['How the analysis worked', '<ol class="learn"><li>Each line of the 26 transcripts, 2,244 in all, got one of 11 codes for the job it does, such as proposing an idea, sharing context, agreeing, building on an idea or challenging. The scheme builds on Weinberger and Fischer (2006) and on O\'Connor and Michaels (2019).</li><li>Two researchers coded three discussions independently and agreed on 347 of 389 lines (Cohen\'s κ = .87).</li><li>Transition network analysis then showed, for each stance, how often each move was followed by each other move, with human and AI moves kept apart. Intervals came from resampling groups 2,000 times, and differences were checked with permutation tests.</li><li>Finally, close reading of individual idea episodes, including counter-cases, checked the patterns against what people actually said.</li></ol>'],
-      ['What I would do differently', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>Run a larger study, with groups randomly allocated to each stance.</li><li>Test a fully autonomous AI peer, rather than one checked by a researcher, and give it a way to take the floor without cutting across someone.</li><li>Double-code discussions from both conditions, not just one.</li></ul>'],
+      ['What I would do differently', '<ul class="learn"><li>Run a larger study, with groups randomly allocated to each stance.</li><li>Test a fully autonomous AI peer, rather than one checked by a researcher, and give it a way to take the floor without cutting across someone.</li><li>Double-code discussions from both conditions, not just one.</li></ul>'],
       ['Sharing it back', '<p>Research rarely returns to the people who made it possible. So I wrote and designed a 34-page anonymised booklet for participants, “Learning, teaching and assessment in the age of AI”. It gathers the ideas from all 26 conversations and compares how students and educators see them. It is separate from the analysis in the paper.</p>IMG:1BOOKLET'],
       ['What the booklet found', '<ul class="learn"><li>Students and educators never sat in the same conversation, yet their ideas overlapped in three places: judge the thinking, not the product; explain the work out loud; and keep some moments with AI and some without.</li><li>Both groups thought a ban on AI wasn\'t realistic, and both wanted honest disclosure of AI use, such as a form handed in with the work.</li><li>The gaps were telling: several students raised AI\'s environmental and data costs, and no educator did. Educators raised how hard change is for a university and its staff, which students rarely did.</li><li>Students wanted AI that guides them to an answer rather than giving it, and to do their own thinking first.</li></ul>IMG:2'],
-      ['What I learnt', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>Coding every turn by hand was slow, but it made the patterns in the network analysis much easier to read and explain.</li><li>Writing for reviewers and writing for participants are different jobs: the booklet needed a plainer structure than the article, not just simpler words.</li><li>Running sessions in English and Spanish meant the coding scheme had to work in both languages from the start.</li></ul>'],
-      ['Skills used', 'PILLS:Study design|Wizard-of-Oz prototyping|Qualitative coding|Inter-rater reliability|Transition network analysis|Resampling and permutation tests|R|Python|Research writing|Information design|English & Spanish'],
+      ['What I learnt', '<ul class="learn"><li>Coding every turn by hand was slow, but it made the patterns in the network analysis much easier to read and explain.</li><li>Writing for reviewers and writing for participants are different jobs: the booklet needed a plainer structure than the article, not just simpler words.</li></ul>'],
+      ['Skills used', 'PILLS:Study design|Prompt engineering|Wizard-of-Oz prototyping|Qualitative coding|Inter-rater reliability|Transition network analysis|Resampling and permutation tests|Research writing|Information design'],
       ['Outcomes', '<p>A research article submitted to a human–computer interaction venue, now in anonymous peer review, and an anonymised booklet for the people who took part. I can\'t share the article\'s results or venue until there\'s a decision; I\'ll add them here then.</p>']
-    ]
-  },
-  {
-    id: 'designai', case: true,
-    title: 'How generative AI is changing the work of product designers',
-    short: 'Design and AI study',
-    org: 'CY École de Design, with three classmates', period: '2025 – 26', start: '2025-09', end: '2026-06',
-    role: 'Co-researcher', status: 'Report and open toolkit',
-    themes: ['hci', 'impacts'],
-    lede: 'Product designers keep hearing that generative AI will change everything. We interviewed designers to find out what it actually changes, and where they draw the line.',
-    nums: [['6', 'design phases mapped'], ['4', 'responsibility tensions: privacy, IP, jobs, environment']],
-    brief: ['Generative AI tools are spreading through product and industrial design, but little is known about how designers really use them, or what it means for their role and their responsibilities.', 'With three classmates, combined a literature review with qualitative interviews with designers, tested two hypotheses, and mapped AI use across six phases of design work.', 'AI sits on the edges of the job while intent, sketching and making stay human. The designer\'s role shifts towards selecting and mediating, and new tensions appear around confidentiality, intellectual property, junior jobs and the environment. We wrote a report and an open toolkit for designers.'],
-    steps: [
-      { t: 'Question', d: 'What impact does generative AI have on the role of the product designer?', done: true },
-      { t: 'Review', d: 'Research on AI and creative practice, intellectual property and design', done: true },
-      { t: 'Interview', d: 'Qualitative interviews with designers in different roles', done: true },
-      { t: 'Test', d: 'The same prompts across several image tools, side by side', done: true },
-      { t: 'Analyse', d: 'Four themes, from everyday use to responsibility', done: true },
-      { t: 'Share', d: 'A report, and an open toolkit for product designers (CC BY-SA 4.0)', done: true }
-    ],
-    images: [
-      { src: PHOTOS.ia_cover, alt: 'Pages from the Design produit et IA toolkit: the title, the research question and the six colour-coded phases', label: 'The toolkit: title, research question and the six phases' },
-      { src: PHOTOS.ia_phases, alt: 'Three pages from the toolkit, each describing a design phase with designer quotes and QR codes linking to AI tools', label: 'Phase pages, with designers\' quotes and the tools they use' }
-    ],
-    facts: [['Role', 'Co-researcher, team of 4'], ['Method', 'Literature review and interviews'], ['Outputs', 'Report and open toolkit'], ['Language', 'French']],
-    sections: [
-      ['The question', '<p>What impact does generative AI have on the role of the product designer? More precisely: how far does it change designers\' practices, roles, and the ethical and creative stakes of their work?</p><p>We tested two hypotheses: that how much designers get from AI depends on how well they can prompt it, and that AI stays a tool rather than becoming a “virtual designer”.</p>'],
-      ['How we did it', '<p>We combined a literature review, including work on AI in creative practice and on intellectual property (Bebeshko et al., 2021; Heigl, 2025; Zhou and Lee, 2024; Bartlett and Camba, 2024), with <strong>qualitative interviews with designers</strong> in different roles. We also gave the same prompts to several image tools to compare what they produced.</p><p>We were open about the limits: a small number of interviews, profiles that don\'t cover every discipline, and individual accounts to be read with care.</p>' + '<span class="draft">Draft: Natasha to check</span><p>[How many designers you interviewed, and how.]</p>'],
-      ['What we found', '<ol class="learn"><li>AI sits on the edges of the job. Designers use it for research, early ideas, quick renders and talking to clients. It speeds things up, but a convincing image can suggest progress that doesn\'t exist: “there\'s nothing concrete behind the image”.</li><li>Designers draw a line. Sketching, thinking in volume, materials and whether a thing can actually be made stay human. “I\'m something creative, not generative.”</li><li>The role shifts to selecting and mediating. Prompting, choosing tools, sorting 20 or 30 variations and explaining to clients why concepts still take time become core skills.</li><li>Responsibility is already inside everyday use. See below.</li></ol>IMG:1'],
-      ['The tensions we found', '<ul class="learn"><li>Confidentiality: client briefs go into tools that remember everything, and some designers even use AI to read their own confidentiality clauses.</li><li>Intellectual property: tools trained on other people\'s work can reproduce protected forms, such as Nike\'s swoosh on generated trainers, while their terms put the legal risk on the designer.</li><li>Jobs: the routine tasks that junior designers learnt from are the easiest to automate, which raises the question of how newcomers will gain experience.</li><li>Environment: every generation has a hidden energy cost, which clashes with designers who build their practice around low-impact products.</li></ul>'],
-      ['Outputs', '<p>A written report, and an open toolkit for product designers that maps the AI tools discussed in the interviews to each phase of the design process, published under CC BY-SA 4.0.</p>'],
-      ['My role', '<span class="draft">Draft: Natasha to check</span><p>[What you did in the team of four, for example interviews, the literature review, analysis, writing or the toolkit\'s design.]</p>'],
-      ['What I learnt', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>[One thing that surprised you in the interviews]</li><li>[One thing you would do differently, for example more interviews or a wider range of designers]</li></ul>'],
-      ['Skills used', 'PILLS:Literature review|Qualitative interviews|Thematic analysis|Research writing|Editorial design|French']
     ]
   },
   {
@@ -76,7 +42,7 @@ const WORK = [
     title: 'A fellowship teaching young child-safety leaders to use foresight',
     short: 'Child Safety & AI Fellowship',
     org: 'Until Tomorrow, with the Asia-Europe Foundation', period: 'Aug 2026 – now', start: '2026-08', end: null,
-    role: 'Founder & lead', status: 'Running now',
+    role: 'Founder, now mentor', status: 'Running now',
     themes: ['safety', 'foresight', 'learning', 'impacts'],
     lede: 'Young child-safety advocates know the risks children face today, but have few tools for the ones still on their way. I built a six-week foresight programme to give them some.',
     steps: [
@@ -89,24 +55,22 @@ const WORK = [
     ],
     images: [
       { src: PHOTOS.zoom, alt: 'Natasha and ten fellowship participants on a video call, smiling at the camera', label: 'An online session with participants from the cohort' },
-      { src: '', alt: '', label: 'A week of readings on the website' },
-      { src: '', alt: '', label: 'The fellowship website homepage' },
-      { src: '', alt: '', label: 'Mapping the six weekly modules' },
-      { src: '', alt: '', label: 'Planning with the facilitators' },
-      { src: '', alt: '', label: 'Early drafts of the website' }
+      { src: PHOTOS.ut_banner, alt: 'Banner reading Child Safety & AI Fellowship, Futures Thinking in Practice, 3 October to 14 November 2026, with the Until Tomorrow and Asia-Europe Foundation logos', label: 'The fellowship, run with the Asia-Europe Foundation, 3 October to 14 November 2026' },
+      { src: PHOTOS.ut_signal, alt: 'Until Tomorrow post titled Signal of the week: governments are stepping in on children\'s access to digital platforms, with Australia\'s minimum age of 16 for social media accounts', label: 'Instagram post, signal of the week: a change happening now, and why it could matter by 2040' },
+      { src: PHOTOS.ut_toolkit, alt: 'Until Tomorrow foresight toolkit card: a good frame answers four questions, what, where, when and who', label: 'Instagram post from the foresight toolkit: how to frame a question about the future' },
+      { src: PHOTOS.ut_doc, alt: 'The shared document for cohort 1 of the Child Safety & AI Fellowship, open on the Introduction tab, with tabs for framing, sensemaking, scenarios, backcasting and a simulation game', label: 'The shared session document for cohort 1, with a tab for each session' }
     ],
-    nums: [['30+', 'countries applied'], ['8', 'people in the team I lead']],
+    nums: [['30+', 'countries applied'], ['8', 'people in the team I built']],
     brief: ['Child-safety advocates have few tools for risks that haven\'t arrived yet.', 'Designed a six-week foresight programme from scratch, built its website and recruitment, and assembled a team of 8.', 'A programme that didn\'t exist before, now running in 3 cohorts with applicants from 30+ countries.'],
-    facts: [['Role', 'Founder & lead'], ['Partner', 'Asia-Europe Foundation (ASEF)'], ['Reach', '30+ countries applied, 6 continents'], ['Status', 'Running now']],
+    facts: [['Role', 'Founder, now mentor'], ['Partner', 'Asia-Europe Foundation (ASEF)'], ['Reach', '30+ countries applied, 6 continents'], ['Status', 'Running now']],
     sections: [
       ['The problem', '<p>How can we protect children from technology risks that haven\'t fully arrived yet, without taking away their agency? Young people working on child safety often have strong values and networks but few structured ways to think ahead.</p>'],
-      ['My role', '<p>I lead the fellowship at Until Tomorrow, the youth-led foresight and technology collective I run, in partnership with the Asia-Europe Foundation.</p><p>I <strong>designed the programme from scratch</strong>, built its website and recruitment process, and lead a team of eight: four facilitators, a recruitment lead and three advisors.</p>'],
+      ['My role', '<p>I founded the fellowship at Until Tomorrow, the youth-led foresight and technology collective I run, in partnership with the Asia-Europe Foundation. I\'m now a mentor on the programme.</p><p>I <strong>designed the programme from scratch</strong>, built its website and recruitment process, and assembled a team of eight: four facilitators, a recruitment lead and three advisors.</p>'],
       ['Approach', '<p>Each week pairs a foresight method with child-safety questions. Participants start with an introduction to foresight, then work through weekly readings and sessions run by the facilitators.</p><p>Foresight means thinking systematically about several possible futures rather than predicting one, so that people can act before a risk becomes a crisis.</p>IMG:1LINKS'],
       ['Process', 'STEPS'],
       ['Skills used', 'PILLS:Programme design|Foresight|Curriculum writing|Web building (HTML, CSS, JS)|Recruitment|Team leadership|Partnership management'],
-      ['', 'IMG:2'],
-      ['Behind the scenes', '<p>How the programme came together, from module maps to website drafts.</p>ROW:3,4,5'],
-      ['What I\'m learning so far', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>Foresight methods land best when they start from a child-safety case participants already know.</li><li>A programme spread across 30+ countries has to be planned around time zones and connections, not only content.</li><li>Clear roles in a small team (facilitators, recruitment, advisors) made it possible to build and run the programme alongside my studies.</li></ul>'],
+      ['Materials', '<p>Each session has its own tab in a shared document for the cohort, from the introduction to framing, sensemaking, scenarios, backcasting and a simulation game. Until Tomorrow also shares the ideas on Instagram, with a signal of the week to debate and a foresight toolkit that explains each method in a few lines.</p>IMG:4ROW:2,3'],
+      ['What I\'m learning so far', '<ul class="learn"><li>Plan for more interest than you expect: demand for the fellowship was higher than we anticipated, and the programme has to be ready to scale or select.</li><li>A programme spread across 30+ countries has to be planned around time zones and connections, not only content.</li><li>Clear roles in a small team (facilitators, recruitment, advisors) made it possible to build and run the programme alongside my studies.</li></ul>'],
       ['What\'s next', '<p>The cohorts are running now. I\'ll add what participants produced once they finish.</p>']
     ]
   },
@@ -125,33 +89,32 @@ const WORK = [
       { t: 'Online', d: 'sunflower-data.com', done: true }
     ],
     images: [
-      { src: '', alt: '', label: 'A Sunflower screen showing a summary next to its source' },
-      { src: '', alt: '', label: 'Design iterations of the source panel' },
-      { src: '', alt: '', label: 'Pitching at the Council of Europe hackathon' },
-      { src: '', alt: '', label: 'Before: [the earlier design]' },
-      { src: '', alt: '', label: 'After: [the design once you changed it]' },
-      { src: '', alt: '', label: 'Sketches and sticky notes from early design sessions' }
+      { src: PHOTOS.sf_cover, alt: 'Pitch slide reading introducing Sunflower, with a yellow phone, sunflowers and the Council of Europe Democracy\'s Firewall logo', label: 'Our pitch at the Council of Europe "Democracy\'s Firewall" hackathon, June 2025' },
+      { src: PHOTOS.sf_first, alt: 'Pitch slide: the Sunflower logo with the words unbiased, intuitive, user-centred, and a hand holding a phone over a map of Europe', label: 'The first idea of the app, from the hackathon pitch' },
+      { src: PHOTOS.sf_locked, alt: 'Pitch slide: a crumpled sheet reading inaccessible open data, taped behind metal bars', label: 'The problem as we pitched it: open data that people can\'t get to' },
+      { src: PHOTOS.sf_before, alt: 'Pitch slide listing the app\'s functions, curated content, community insights and a user-friendly interface, around a phone showing a list of datasets', label: 'The app\'s functions, from our May 2026 pitch deck' },
+      { src: PHOTOS.sf_after, alt: 'Draft home page: headlines from a left-leaning paper, a right-leaning paper and a public broadcaster around a phone showing rents in Bologna, with the line Sunflower puts every story next to how others cover it', label: 'A draft of the new home page' },
+      { src: PHOTOS.sf_numbers, alt: 'Draft home page: a phone showing rents in Bologna up 18% in five years, beside a map of 7,900+ municipalities and an employment chart', label: 'The draft then links each story to the official numbers behind it' }
     ],
     nums: [['2nd', 'of 250+ teams, Council of Europe'], ['1', 'accelerator place, 2026']],
     brief: ['People can\'t check public data they can\'t find or read, and disinformation fills the gap.', 'Co-founded the platform and lead its product and design, so every summary sits next to its source.', 'A working platform, 2nd of 250+ teams at a Council of Europe hackathon and selected for a democratic innovations accelerator.'],
     facts: [['Role', 'Co-founder & product lead'], ['Team', 'Three co-founders'], ['Recognition', '2nd of 250+ teams, Council of Europe'], ['Support', 'Democratic Innovations Accelerator']],
     sections: [
-      ['The problem', '<p>Public data is meant to be open, but it is often scattered and hard to read. When people can\'t see where a claim comes from, they can\'t check it, and disinformation thrives in that gap.</p>'],
+      ['The problem', '<p>Public data is meant to be open, but it is often scattered and hard to read. When people can\'t see where a claim comes from, they can\'t check it, and disinformation thrives in that gap.</p>IMG:2'],
       ['My role', '<p>I co-founded Sunflower with two others and lead the product. My part is the design and user experience: making sure <strong>non-technical citizens can see the source</strong> behind what they read and check it themselves.</p><p>Like Signal, we don\'t use AI where it isn\'t needed, and Sunflower doesn\'t use any. We put our users\' privacy first.</p>'],
       ['Process', 'STEPS'],
       ['', 'IMG:1'],
-      ['Where feedback changed the design', '<span class="draft">Draft: Natasha to check</span><p>[What you saw or heard: one moment from testing, judges or users that showed the design wasn\'t working.]</p><p>[What you changed, and why.]</p><p>[What happened next: what people could do afterwards that they couldn\'t before.]</p>ROW:3,4'],
-      ['', 'IMG:5'],
-      ['Building it as a venture', '<span class="draft">Draft: Natasha to check</span><p>Sunflower was selected for the People Powered &amp; Coglobal Democratic Innovations Accelerator in 2026. [What the accelerator covered, for example who your users are, how Sunflower could be funded and kept running, and which partners you spoke to.]</p><p>[One decision about the business side that you made, and why.]</p>'],
+      ['Where testing changed our direction', '<p>Testing showed us that young people outside academia didn\'t want raw data. They wanted something more visual that they could apply directly to their own lives.</p><p>So we went back to the basics: what the app is for, and who it is for. We rethought Sunflower\'s purpose and its target audience around what those users told us.</p>'],
+      ['Building it as a venture', '<p>Sunflower was selected for the People Powered &amp; Coglobal Democratic Innovations Accelerator in 2026. In our mentor sessions, we worked through who Sunflower should serve, weighing young people against schools and municipalities, and how it could be funded.</p><p>At first, we assumed the money would come from companies. That changed as we worked through these questions with our mentors.</p>'],
       ['Recognition', '<p>2nd of 250+ teams at the Council of Europe "Democracy\'s Firewall" Hackathon (June 2025), then selected for the People Powered &amp; Coglobal Democratic Innovations Accelerator (spring 2026).</p><p><a href="https://sunflower-data.com" target="_blank" rel="noopener">Visit sunflower-data.com</a> · <a href="https://eutopia-university-ksup.cyu.fr/english-version/student-initiative-sunflower-open-data-access-media-and-information-literacy" target="_blank" rel="noopener">EUTOPIA article</a></p>'],
-      ['What I\'m learning so far', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>Transparency has to be visible at the moment of reading: a sources page that nobody opens doesn\'t build trust.</li><li>Pitching to non-technical judges made us explain the product in one sentence, which improved it too.</li><li>Most product decisions are about what to leave out.</li></ul>IMG:2'],
+      ['What I\'m learning so far', '<ul class="learn"><li>Transparency has to be visible at the moment of reading: a sources page that nobody opens doesn\'t build trust.</li><li>Pitching to non-technical judges made us explain the product in one sentence, which improved it too.</li><li>Most product decisions are about what to leave out.</li><li>Don\'t hold on too tightly to the first idea: Sunflower has changed a lot since the hackathon, and it got better each time we let it evolve.</li></ul>'],
       ['Skills used', 'PILLS:Product leadership|User experience and interface design|Information architecture|Privacy-first design|Pitching']
     ]
   },
   {
     id: 'unesco', case: true,
     title: 'Bringing young people\'s voices into UNESCO\'s decisions',
-    short: 'UNESCO youth policy',
+    short: 'UNESCO80 youth consultation',
     org: 'UNESCO Global Youth Community', period: 'Mar 2025 – now', start: '2025-03', end: null,
     role: 'Steering Committee member', status: 'Ongoing',
     themes: ['policy', 'foresight', 'learning'],
@@ -167,56 +130,28 @@ const WORK = [
     images: [
       { src: PHOTOS.unesco, alt: 'Natasha with young leaders and officials on the stage at UNESCO headquarters, in front of a wall of national flags', label: 'At UNESCO headquarters in Paris, 25 September 2026' },
       { src: PHOTOS.floor, alt: 'Natasha speaking into a delegate microphone at a conference table', label: 'Speaking from the floor during a session' },
-      { src: '', alt: '', label: 'Pages from the Call by Young People' }
+      { src: PHOTOS.call_panel, alt: 'Young leaders and officials at a long table at UNESCO headquarters, with the speakers\' portraits on the screen behind them', label: 'The Call by Young People being presented at UNESCO headquarters, September 2026' },
+      { src: PHOTOS.call_group, alt: 'Young leaders and officials in a group photo at UNESCO headquarters, in front of the EU, French and UN flags', label: 'Young leaders and officials at UNESCO headquarters after the Call was presented, September 2026' },
+      { src: PHOTOS.samarkand_podium, alt: 'Natasha seated at a UNESCO podium in Samarkand, beside the UN flag', label: 'At the 14th UNESCO Youth Forum in Samarkand, 2025' }
     ],
     nums: [['145', 'young leaders, 135 countries'], ['1 of 11', 'presenters to the Director-General']],
     brief: ['Young people\'s views rarely reach the people who decide at UNESCO.', 'Co-drafted the Youth Forum\'s conclusions and was Youth Focal Point for Europe and North America in the UNESCO80 consultation.', 'The conclusions were presented to member states, and the Call by Young People was presented to the Director-General.'],
     facts: [['Role', 'Steering Committee member'], ['Community', '500+ members'], ['Consultation', '145 young leaders, 135 countries'], ['Status', 'Ongoing']],
     sections: [
       ['The context', '<p>The Global Youth Community is UNESCO\'s largest youth coalition, with 500+ members. Its job is to make young people\'s priorities heard across the UN system.</p>'],
-      ['My role', '<p>As a Steering Committee member I co-authored the <strong><a href="https://unesdoc.unesco.org/ark:/48223/pf0000396223" target="_blank" rel="noopener">Conclusions of the 14th UNESCO Youth Forum</a></strong>, presented to member states at the 43rd General Conference, and I now help track their implementation.</p><p>In the UNESCO80 youth consultation I was the Youth Focal Point for Europe and North America. I was one of 11 young leaders who presented the resulting <a href="https://www.unesco.org/sites/default/files/medias/fichiers/2026/09/FINAL%20-%20Call%20by%20Young%20People%20for%20a%20New%20Culture%20of%20Peace%20-cover.pdf" target="_blank" rel="noopener">Call by Young People</a> and Reflection Document to the Director-General and the French Minister for Europe and Foreign Affairs.</p>'],
+      ['My role', '<p>As a Steering Committee member, I co-authored the <strong><a href="https://unesdoc.unesco.org/ark:/48223/pf0000396223" target="_blank" rel="noopener">Conclusions of the 14th UNESCO Youth Forum</a></strong>, presented to member states at the 43rd General Conference, and I now help track their implementation.</p><p>In the UNESCO80 youth consultation, I was the Youth Focal Point for Europe and North America. I was one of 11 young leaders who presented the resulting <a href="https://www.unesco.org/sites/default/files/medias/fichiers/2026/09/FINAL%20-%20Call%20by%20Young%20People%20for%20a%20New%20Culture%20of%20Peace%20-cover.pdf" target="_blank" rel="noopener">Call by Young People</a> and Reflection Document to the Director-General and the French Minister for Europe and Foreign Affairs.</p>'],
       ['Process', 'STEPS'],
-      ['', 'IMG:1'],
-      ['Outcomes', '<p>The Forum\'s conclusions were presented to member states at the 43rd General Conference in November 2025. The Call by Young People, drawn from 145 young leaders in 135 countries, was presented to the Director-General in September 2026.</p>IMG:2'],
-      ['What I learnt', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>Most of this work is translation: turning very different positions from many countries into wording a whole community can stand behind.</li><li>A recommendation only matters if someone tracks it afterwards, which is why I stayed on to follow implementation.</li></ul>'],
-      ['Skills used', 'PILLS:Policy drafting|Consultation|Multi-stakeholder negotiation|Public speaking|English, French & Spanish']
+      ['', 'ROW:4,1'],
+      ['Outcomes', '<p>The Forum\'s conclusions were presented to member states at the 43rd General Conference in November 2025. The Call by Young People, drawn from 145 young leaders in 135 countries, was presented to the Director-General in September 2026.</p>ROW:2,3'],
+      ['What I learnt', '<ul class="learn"><li>Most of this work is translation: turning very different positions from many countries into wording a whole community can stand behind.</li><li>A recommendation only matters if someone tracks it afterwards, which is why I stayed on to follow implementation.</li><li>Data visualisation is a powerful way to synthesise ideas: I coded participants\' input and analysed it, and seeing it visually made the common ground much easier to find.</li></ul>'],
+      ['Skills used', 'PILLS:Policy drafting|Consultation|Multi-stakeholder negotiation|Public speaking|English and French']
     ]
   },
-  {
-    id: 'climate', case: true,
-    title: 'Leading a 15-person team running a global climate ambassadors programme',
-    short: 'Climate Cardinals',
-    org: 'Climate Cardinals, with The Nature Conservancy', period: 'Jul 2023 – Feb 2026', start: '2023-07', end: '2026-02',
-    role: 'Deputy Director of Education', status: 'Completed',
-    themes: ['learning', 'access'],
-    lede: 'Young people in 80+ countries wanted to act on climate, but most climate education isn\'t written for them or in their language. I started as a graphic designer and went on to lead the education team.',
-    nums: [['15', 'people in the team I led'], ['100+', 'ambassadors in 80+ countries']],
-    brief: ['Climate education rarely reaches young people in their own context and language.', 'Led a 15-person international team running the Climate Ambassadors Program with The Nature Conservancy, and managed the newsletter Ptera.', 'A programme for 100+ ambassadors in 80+ countries, and a newsletter read by 11,000+ subscribers in 86 countries.'],
-    steps: [
-      { t: 'Design', d: 'Graphic designer, Jul 2023 – Jul 2025', done: true },
-      { t: 'Lead', d: 'Deputy Director of Education from Jul 2025, leading a team of 15', done: true },
-      { t: 'Run', d: 'Climate Ambassadors Program with The Nature Conservancy: 100+ ambassadors, 80+ countries', done: true },
-      { t: 'Reach', d: 'Newsletter Ptera: 11,000+ subscribers in 86 countries', done: true }
-    ],
-    images: [
-      { src: '', alt: '', label: 'Climate Cardinals education materials or a programme session' },
-      { src: '', alt: '', label: 'An issue of the Ptera newsletter' },
-      { src: '', alt: '', label: 'Graphics you designed' }
-    ],
-    facts: [['Role', 'Deputy Director of Education'], ['Team', '15 people, international, remote'], ['Programme', '100+ ambassadors, 80+ countries'], ['Newsletter', '11,000+ subscribers, 86 countries']],
-    sections: [
-      ['The problem', '<p>Climate Cardinals is a youth-led nonprofit that makes climate information accessible to young people around the world. Most climate education isn\'t written for young people, or in their language.</p>'],
-      ['My role', '<p>I joined in July 2023 as a graphic designer and became Deputy Director of Education in July 2025. I <strong>led a 15-person international team</strong> running the Climate Ambassadors Program with The Nature Conservancy, and managed the newsletter Ptera.</p>'],
-      ['How I led the team', '<span class="draft">Draft: Natasha to check</span><p>[How the team was organised, for example who did what and how you met across time zones.]</p><p>[One hard call you made as a lead, and how it turned out.]</p>'],
-      ['Process', 'STEPS'],
-      ['', 'IMG:1'],
-      ['What I learnt', '<span class="draft">Draft: Natasha to check</span><ul class="learn"><li>[One thing about leading a remote, volunteer team]</li><li>[One thing you would do differently]</li></ul>IMG:2'],
-      ['Skills used', 'PILLS:Team leadership|Programme management|Graphic design|Newsletter editing|Remote collaboration']
-    ]
-  },
+  { id: 'climate', short: 'Climate Cardinals', title: 'Deputy Director of Education', org: 'Climate Cardinals', when: '2023 – 26', start: '2023-07', end: '2026-02', themes: ['learning', 'access'], tag: 'Leadership' },
   { id: 'igpde', short: 'Design-fiction workshops', title: 'Design-fiction workshops for senior civil servants', org: 'IGPDE, French Ministry of Economy', when: '2025', start: '2025-06', end: '2025-06', themes: ['foresight', 'policy'], tag: 'Facilitation' },
   { id: 'humane', short: 'Humane Intelligence', title: 'AI & child safety volunteer', org: 'Humane Intelligence', when: '2026 – now', start: '2026-09', end: null, themes: ['safety', 'impacts'], tag: 'Volunteering' },
   { id: 'chatham', short: 'Chatham House Common Futures', title: 'Common Futures Conversations, AI & Technology group', org: 'Chatham House', when: '2026 – 27', start: '2026-03', end: '2027-03', themes: ['policy', 'impacts'], tag: 'Network' },
+  { id: 'bluedot', short: 'AGI Strategy course (BlueDot)', title: 'AGI Strategy course', org: 'BlueDot Impact', when: '2026 – now', start: '2026-11', end: null, themes: ['alignment', 'safety'], tag: 'Course' },
   { id: 'sentient', short: 'Sentient Futures fellowship', title: 'AI×Animals Fellowship', org: 'Sentient Futures', when: '2026', start: '2026-04', end: '2026-06', themes: ['impacts', 'foresight'], tag: 'Fellowship' },
   { id: 'passculture', short: 'pass Culture app testing', title: 'User testing for the pass Culture app', org: 'French Ministry of Culture · app with 4.7M+ users', when: '2023 – 24', start: '2023-08', end: '2024-09', themes: ['hci', 'access'], tag: 'User research' }
 ];

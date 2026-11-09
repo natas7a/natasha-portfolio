@@ -5,24 +5,31 @@ const QUESTIONS = [
   ['How do interfaces shape trust, effort and critical thinking?', 'sunflower', 'See Sunflower']
 ];
 const MOMENTS = [
-  { d: '2025-06', when: 'Jun 2025', label: 'Design-fiction workshops, IGPDE' },
+  { d: '2024-11', when: 'Nov 2024', label: 'Master of ceremonies: EUTOPIA Week 2024, Cergy' },
+  { d: '2025-08', when: 'Aug 2025', label: 'Representative: Pan-European Summit on Climate Resilience, Vienna' },
   { d: '2025-11', when: 'Nov 2025', label: 'Conclusions of the 14th UNESCO Youth Forum (co-author)' },
-  { d: '2025-12', when: 'Dec 2025', label: 'Panel: Advancing Human Rights at UN80' },
+  { d: '2025-12', when: 'Dec 2025', label: 'Panellist: Advancing Human Rights at UN80' },
   { d: '2026-06', when: 'Jun 2026', label: 'Article: The geopolitics of AI sovereignty (Chatham House)' },
-  { d: '2026-07', when: 'Jul 2026', label: 'Talk: UNESCO\'s 80th anniversary' },
-  { d: '2026-09', when: 'Sep 2026', label: 'Presented the Call by Young People to UNESCO\'s Director-General' },
-  { d: '2026-10', when: 'Oct 2026', label: 'French National Commission for UNESCO event', up: true },
-  { d: '2026-12', when: 'Dec 2026', label: 'French association for the United Nations event', up: true }
+  { d: '2026-07', when: 'Jul 2026', label: 'Featured in communications for UNESCO\'s 80th anniversary' },
+  { d: '2026-09', when: 'Sep 2026', label: 'Presented the Call by Young People to UNESCO\'s Director-General; youth representative at Pope Leo XIV\'s visit to UNESCO' },
+  { d: '2026-11', when: 'Nov 2026', label: 'Facilitator: workshop on democracy and universities, EUTOPIA Week', up: true },
+  { d: '2026-12', when: 'Dec 2026', label: 'Speaker: French association for the United Nations', up: true }
 ];
 const TALKS = [
-  { y: 2025, m: 'Jun', kind: 'Workshops', head: 'Design-fiction workshops', host: 'Senior civil servants, IGPDE (French Ministry of Economy)' },
-  { y: 2025, m: 'Dec', kind: 'Panel', head: 'Advancing Human Rights at UN80', host: 'UNESCO, invited by the EU Delegation' },
-  { y: 2026, m: 'Jul', kind: 'Talk', head: 'UNESCO\'s 80th anniversary', host: 'Young people\'s views on peace' },
-  { y: 2026, m: 'Sep', kind: 'Presentation', head: 'Call by Young People', host: 'To UNESCO\'s Director-General, as one of 11 young leaders' },
-  { y: 2026, m: 'Oct', up: true, kind: 'Upcoming', head: 'French National Commission for UNESCO', host: 'Paris' },
-  { y: 2026, m: 'Dec', up: true, kind: 'Upcoming', head: 'French association for the United Nations', host: '' }
+  { when: '2023 – 24', kind: 'Ambassador', head: 'pass Culture', host: 'Featured in their social media, including a TikTok video seen 76,900 times', img: PHOTOS.pc_tiktok, alt: 'Still from a pass Culture TikTok video: Natasha and another ambassador smiling at the camera, captioned C\'est parti!' },
+  { y: 2024, m: 'Mar', kind: 'Organiser', head: 'EU.phorie at the Gaîté Lyrique, Paris', host: 'A day on Europe by and for young people, ahead of the 2024 European elections. I built it from scratch with seven other pass Culture ambassadors: debates, workshops, quizzes and DJ sets. <a href="https://pass.culture.fr/actualite/le-pass-culture-gaite-lyrique" target="_blank" rel="noopener">Article</a> · <a href="https://youtu.be/3UXxPrQTvnQ" target="_blank" rel="noopener">Video</a>', img: PHOTOS.euphorie, alt: 'Natasha and other pass Culture ambassadors standing in front of a screen at the Gaîté Lyrique, one of them speaking into a microphone' },
+  { y: 2024, m: 'Nov', kind: 'Master of ceremonies', head: 'EUTOPIA Week 2024: Entrepreneurship for Impact', host: 'EUTOPIA alliance of European universities, Cergy, 25 to 29 November 2024', img: PHOTOS.eutopia_mc, alt: 'Natasha and a colleague holding EUTOPIA folders in a lecture hall, with the EUTOPIA Week 2024 title on the screen behind them' },
+  { y: 2025, m: 'Aug', kind: 'Representative', head: 'Pan-European Summit on Climate Resilience, Vienna', host: 'Pontifical Academies of Sciences and Social Sciences. I represented Climate Cardinals and contributed to the summit\'s statement of outcomes.', img: PHOTOS.summit_stairs, alt: 'Natasha and three other young delegates with summit lanyards, standing on a white staircase' },
+  { y: 2025, m: 'Dec', kind: 'Panellist', head: 'Advancing Human Rights at UN80', host: 'UNESCO, invited by the EU Delegation, as a member of the UNESCO Global Youth Community Steering Committee', img: PHOTOS.un80_panel, alt: 'Six panellists on stage at UNESCO under a slide listing the panel, including Ms Natasha Litherland, UNESCO Global Youth Community Steering Committee member' },
+  { y: 2026, m: 'Jul', kind: 'Featured', head: 'UNESCO\'s 80th anniversary', host: 'A video on young people\'s views on peace, for France Diplomatie\'s communications', img: PHOTOS.seine, alt: 'Natasha sitting by the Seine in Paris, seen past a film camera during filming' },
+  { y: 2026, m: 'Sep', kind: 'Presenter', head: 'Call by Young People', host: 'To UNESCO\'s Director-General, as one of 11 young leaders', img: PHOTOS.call_group, alt: 'Natasha with the other young leaders and officials in a group photo at UNESCO headquarters, in front of the EU, French and UN flags' },
+  { y: 2026, m: 'Sep', kind: 'Youth representative', head: 'Pope Leo XIV\'s visit to UNESCO', host: 'At the UNESCO Forum for Youth in the Era of AI, and chosen to be followed all day by a France TV crew for a documentary on the visit', img: PHOTOS.pope_placard, alt: 'Natasha\'s name placard, Youth network representative, France, at the UNESCO Forum for Youth in the Era of AI, with the opening speech on the stage behind' },
+  { when: 'Autumn 2026', kind: 'Facilitator', head: 'Anticipating KL 2050, Project Hadapan', host: 'An online youth foresight workshop on Kuala Lumpur, with the Asia-Europe Foundation. I gave a talk on framing, which participants then used in breakout rooms.', img: PHOTOS.hadapan, alt: 'Natasha\'s slide, What is framing?, from her talk at the workshop' },
+  { y: 2026, m: 'Nov', up: true, kind: 'Facilitator', head: 'Workshop on democracy and universities', host: 'EUTOPIA Week, EUTOPIA alliance of European universities' },
+  { y: 2026, m: 'Dec', up: true, kind: 'Speaker', head: 'French association for the United Nations', host: '' },
 ];
 const WRITING = [
+  { y: 2025, m: 'August', kind: 'Statement', role: 'Contributor', title: 'From Climate Crisis to Climate Resilience in Europe at Local and Regional Levels', where: 'Pontifical Academies of Sciences and Social Sciences', note: 'The statement of outcomes from the Pan-European Summit on Climate Resilience, Vienna.', url: 'https://www.umb.edu/media/umassboston/editor-uploads/resilient-climate-summits/ResilientEurope-Climate-Summit-Outcomes.pdf' },
   { y: 2025, m: 'November', kind: 'Policy text', title: 'Conclusions of the 14th UNESCO Youth Forum', where: 'UNESCO 43rd General Conference', role: 'Co-author', note: 'Presented to UNESCO member states.', url: 'https://unesdoc.unesco.org/ark:/48223/pf0000396223' },
   { y: 2026, m: 'June', kind: 'Article', role: 'Author', title: 'The geopolitics of AI sovereignty: navigating divisions between industry and academia', where: 'Chatham House Common Futures Conversations', url: 'https://medium.com/@ch_commonfutures/the-geopolitics-of-ai-sovereignty-navigating-divisions-between-industry-and-academia-658c176da12d' },
   { y: 2026, m: 'June', kind: 'Conference poster', role: 'Co-author', title: 'Linking the IPBES Nature Futures Framework with the Transformative Change and Nexus assessments', where: 'World Biodiversity Forum, Davos', url: 'https://doi.org/10.5194/wbf2026-794' },
@@ -35,27 +42,26 @@ const FLOWS = {
   unesco: { cap: 'The UNESCO80 youth consultation, end to end.', steps: [['145', 'young leaders consulted'], ['135', 'countries'], ['1', 'Call by Young People'], ['11', 'young leaders presented it'], ['Sep 2026', 'to the Director-General and the French Minister']] }
 };
 const LOOP = [
-  ['Look ahead', 'Use foresight to ask what could happen, not only what is happening now.', 'unesco', 'UNESCO80 reflection on the future'],
-  ['Study people', 'Watch how people actually talk, learn and decide with technology.', 'upf', 'AI peer study'],
-  ['Translate', 'Turn findings into language and formats non-specialists can use.', 'sunflower', 'Sunflower'],
-  ['Teach and share', 'Bring it back to people through programmes, workshops and guides.', 'fellowship', 'Child Safety & AI Fellowship']
+  ['Ask', 'Start from a question about human judgement, such as whether a non-expert can pick the right answer after watching two AIs argue for opposite ones.', 'upf', 'AI peer study, the question'],
+  ['Build the test', 'Build what the study needs: prompts that give each AI its stance or role, the interface people use, and simulated participants to pilot it.', 'technical', 'Technical projects'],
+  ['Run and measure', 'Run it with real people, code what they say and decide, and test the patterns statistically: did the judge get it right, and what swayed them?', 'upf', 'AI peer study, coding and statistics'],
+  ['Share back', 'Translate the findings for each audience: papers for researchers, plain-language materials for participants and the public, and workshops for practitioners and policymakers.', 'fellowship', 'Child Safety & AI Fellowship']
 ];
 const METHODS_RAW = [
-  ['foresight', 'Foresight and design fiction'], ['studies', 'User studies and testing'], ['coding', 'Conversation coding'],
-  ['analysis', 'Data analysis (R, Python)'], ['design', 'Design, user experience and web'], ['plain', 'Writing for non-specialists'],
-  ['programme', 'Programme design and facilitation'], ['policy', 'Policy drafting'], ['speaking', 'Public speaking'], ['team', 'Team leadership']
+  ['foresight', 'Foresight'], ['studies', 'User studies'], ['coding', 'Conversation coding'],
+  ['analysis', 'Statistics'], ['algo', 'Algorithms'], ['ml', 'Machine learning'], ['prompt', 'Prompt engineering'],
+  ['design', 'Design and UX'], ['plain', 'Plain-language writing'], ['programme', 'Facilitation'], ['policy', 'Policy and public speaking']
 ];
 const METHODS = METHODS_RAW.slice().sort((a, b) => a[1].localeCompare(b[1]));
 // Theme lists on every project read alphabetically.
 WORK.forEach(w => w.themes.sort((a, b) => THEMES[a].name.localeCompare(THEMES[b].name)));
 const USES = {
-  upf: ['studies', 'coding', 'analysis', 'plain'],
-  fellowship: ['foresight', 'design', 'plain', 'programme', 'team'],
+  upf: ['studies', 'coding', 'analysis', 'prompt', 'plain'],
+  technical: ['algo', 'ml', 'analysis'],
+  fellowship: ['foresight', 'design', 'plain', 'programme'],
   sunflower: ['design'],
-  unesco: ['plain', 'policy', 'speaking'],
-  climate: ['design', 'plain', 'programme', 'team'],
+  unesco: ['plain', 'policy'],
   igpde: ['foresight', 'programme'],
-  designai: ['studies', 'plain', 'design'],
   passculture: ['studies']
 };
 
@@ -226,7 +232,9 @@ function movePan() {
 const flow = $('#pan-flow'), tgEl = $('#tg');
 function drawFlow(t) {
   const past = scrollY - panWrap.offsetTop - panD;
-  const fade = tgEl.classList.contains('active') || flowWait ? 0 : Math.max(0, 1 - Math.max(0, past) / 250);
+  // Curves only appear once the projects start sliding in, so they never trail off the edge of the opening screen
+  const into = Math.min(1, Math.max(0, (scrollY - panWrap.offsetTop) / 140));
+  const fade = tgEl.classList.contains('active') || flowWait ? 0 : into * Math.max(0, 1 - Math.max(0, past) / 250);
   flow.style.opacity = fade;
   if (!fade) return;
   const box = pan.getBoundingClientRect();
@@ -294,6 +302,7 @@ function goTo(el, block, smooth) {
 /* ---------- Talks: scrolling down travels along the timeline, then carries on down to Writing ---------- */
 const tkWrap = $('#tk-wrap');
 let tkDist = 0, tkTop = 96;
+const TK_SPEED = 2.5; // each pixel scrolled down moves the timeline this many pixels sideways
 function layoutTalks() {
   const on = panWanted();
   root.classList.toggle('tk-on', on);
@@ -303,12 +312,12 @@ function layoutTalks() {
   const pinH = tkWrap.firstElementChild.offsetHeight;
   tkTop = Math.max(96, (innerHeight - pinH) / 2);
   root.style.setProperty('--tk-top', tkTop + 'px');
-  root.style.setProperty('--tk-h', (pinH + tkDist) + 'px');
+  root.style.setProperty('--tk-h', (pinH + tkDist / TK_SPEED) + 'px');
   moveTalks();
 }
 function moveTalks() {
   if (!root.classList.contains('tk-on')) return;
-  const x = Math.min(tkDist, Math.max(0, tkTop - tkWrap.getBoundingClientRect().top));
+  const x = Math.min(tkDist, Math.max(0, (tkTop - tkWrap.getBoundingClientRect().top) * TK_SPEED));
   $('#talk-list .strip').style.transform = 'translateX(' + (-x).toFixed(1) + 'px)';
   $('.tk-cue').style.opacity = x > tkDist - 20 ? 0 : 1;
 }
@@ -350,9 +359,13 @@ cases.forEach(w => {
   li.innerHTML = '<a href="#story-' + w.id + '" data-story="' + w.id + '">' + w.short + '<span class="th"><span>' + themeNames(w.themes) + '</span></span></a>';
   pjIndex.appendChild(li);
 });
+pjIndex.insertAdjacentHTML('beforeend', '<li class="pj-sep" aria-hidden="true">Also on this page</li>' +
+  [['technical', 'Technical projects'], ['talks', 'Talks and events'], ['writing', 'Writing']]
+    .map(([id, name]) => '<li><a href="#' + id + '" data-section="' + id + '">' + name + '</a></li>').join(''));
 pjIndex.addEventListener('click', e => {
   const a = e.target.closest('a'); if (!a) return;
   e.preventDefault();
+  if (a.dataset.section) { goTo(document.getElementById(a.dataset.section), 'start', !still()); return; }
   const card = document.getElementById('story-' + a.dataset.story);
   goTo(card, 'start', !still());
   card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1200);
@@ -392,11 +405,11 @@ if ('IntersectionObserver' in window) {
 
 /* ---------- Methods matrix ---------- */
 (function () {
-  const rows = WORK.filter(w => USES[w.id]);
+  const rows = WORK.concat([{ id: 'technical', short: 'Technical projects', when: 'Mostly coursework', link: '#technical' }]).filter(w => USES[w.id]);
   let h = '<table><caption class="sr-only">Methods used in each piece of work</caption><thead><tr><th scope="col"><span class="sr-only">Work</span></th>' +
     METHODS.map(([k, n], i) => '<th scope="col" data-col="' + i + '">' + n + '</th>').join('') + '</tr></thead><tbody>';
   rows.forEach(w => {
-    const name = w.case ? '<a href="#' + w.id + '">' + w.short + '</a>' : w.short;
+    const name = w.case || w.link ? '<a href="' + (w.link || '#' + w.id) + '">' + w.short + '</a>' : w.short;
     h += '<tr><th scope="row">' + name + '<small>' + (w.case ? w.period : w.when) + '</small></th>' +
       METHODS.map(([k], i) => { const on = USES[w.id].includes(k); return '<td data-col="' + i + '"><i class="' + (on ? '' : 'no') + '" aria-hidden="true"></i><span class="sr-only">' + (on ? 'Yes' : 'No') + '</span></td>'; }).join('') + '</tr>';
   });
@@ -416,12 +429,18 @@ if ('IntersectionObserver' in window) {
 
 /* ---------- Talks: a dated strip with today marked ---------- */
 (function () {
-  const ev = t => '<li class="st' + (t.up ? ' up' : '') + '"><span class="st-date">' + t.m + ' ' + t.y + '</span><i class="st-dot" aria-hidden="true"></i>' +
-    '<span class="st-body"><span class="st-kind">' + t.kind + '</span><b>' + t.head + '</b>' + (t.host ? '<span class="st-host">' + t.host + '</span>' : '') + '</span></li>';
+  const ev = t => '<li class="st' + (t.up ? ' up' : '') + '"><span class="st-date">' + (t.when || t.m + ' ' + t.y) + '</span><i class="st-dot" aria-hidden="true"></i>' +
+    '<span class="st-body">' + (t.up ? '' : t.img ? '<img class="st-img" src="' + t.img + '" alt="' + (t.alt || '') + '" loading="lazy">' : '<span class="st-img ph" aria-hidden="true"><span class="ph-icon"></span>Photo to add</span>') + '<span class="st-kind">' + t.kind + '</span><b>' + t.head + '</b>' + (t.host ? '<span class="st-host">' + t.host + '</span>' : '') + '</span></li>';
   const past = TALKS.filter(t => !t.up), up = TALKS.filter(t => t.up);
   $('#talk-list').innerHTML = '<ol class="strip">' + past.map(ev).join('') +
     '<li class="st-now" aria-label="Today"><span aria-hidden="true">Today</span></li>' + up.map(ev).join('') + '</ol>';
 })();
+
+/* ---------- Technical projects: link to GitHub once a username is set ---------- */
+if (CONFIG.githubUser) document.querySelectorAll('.tech-card[data-repo]').forEach(c => {
+  if (!c.dataset.repo) return;
+  c.insertAdjacentHTML('beforeend', '<a class="repo" href="https://github.com/' + CONFIG.githubUser + '/' + c.dataset.repo + '" target="_blank" rel="noopener">Code on GitHub ↗<span class="sr-only"> (opens in a new tab)</span></a>');
+});
 
 /* ---------- Writing: each text as a page ---------- */
 $('#write-list').innerHTML = WRITING.slice().reverse().map(w =>
@@ -496,7 +515,7 @@ function renderCase(w) {
     inner = inner.replace('BOOKLET', CONFIG.bookletUrl ? '<p><a href="' + CONFIG.bookletUrl + '" target="_blank" rel="noopener">Read the booklet (PDF)</a></p>' : '');
     const links = [];
     if (CONFIG.untilTomorrowUrl) links.push('<a href="' + CONFIG.untilTomorrowUrl + '" target="_blank" rel="noopener">Until Tomorrow website</a>');
-    if (CONFIG.fellowshipUrl) links.push('<a href="' + CONFIG.fellowshipUrl + '" target="_blank" rel="noopener">Fellowship page and weekly readings</a>');
+    if (CONFIG.fellowshipUrl) links.push('<a href="' + CONFIG.fellowshipUrl + '" target="_blank" rel="noopener">Until Tomorrow website, with the fellowship and its weekly readings</a>');
     inner = inner.replace('LINKS', links.length ? '<p>' + links.join(' · ') + '</p>' : '');
     return '<section class="case-sec" id="' + secId(k) + '" aria-labelledby="' + secId(k) + '-h"><h2 id="' + secId(k) + '-h">' + h + '</h2>' + inner + '</section>';
   }).join('');
@@ -512,7 +531,7 @@ function renderCase(w) {
     figure(w.images && w.images[0], 'case-cover') +
     (f ? '<ol class="flow" style="--n:' + f.steps.length + '" aria-label="' + f.cap + '">' + f.steps.map(([b, t]) => '<li><b>' + b + '</b><span>' + t + '</span></li>').join('') + '</ol><p class="flow-cap">' + f.cap + '</p>' : '') +
     '<div class="case-body"><nav aria-label="On this page"><ul class="case-toc">' + toc + '</ul></nav><div>' + body +
-      '<div class="case-next"><a href="#' + prev.id + '"><small>← Previous</small>' + prev.short + '</a><a href="#' + next.id + '" style="text-align:right"><small>Next →</small>' + next.short + '</a></div>' +
+      '<div class="case-next"><a href="#' + prev.id + '"><small>← Previous</small>' + prev.short + '</a>' + (i === cases.length - 1 ? '<a href="#technical" style="text-align:right"><small>Next →</small>Technical projects</a>' : '<a href="#' + next.id + '" style="text-align:right"><small>Next →</small>' + next.short + '</a>') + '</div>' +
     '</div></div>';
   $('#case-view').querySelectorAll('[data-scroll]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault(); document.getElementById(a.dataset.scroll).scrollIntoView({ block: 'start' });
@@ -622,7 +641,7 @@ setColours(store.get('theme') || 'system');
 });
 
 /* ---------- Contact ---------- */
-document.querySelectorAll('a.cv-dl').forEach(a => { a.href = CONFIG.cvUrl || CV_PDF; });
+document.querySelectorAll('a.cv-dl').forEach(a => { if (CONFIG.cvUrl) { a.href = CONFIG.cvUrl; a.removeAttribute('download'); a.target = '_blank'; a.rel = 'noopener'; } else a.href = CV_PDF; });
 if (CONFIG.bookingUrl) { $('#booking-link').href = CONFIG.bookingUrl; $('#booking-line').hidden = false; }
 document.querySelectorAll('a[data-reason]').forEach(a => a.addEventListener('click', () => {
   const r = document.querySelector('input[name="reason"][value="' + a.dataset.reason + '"]'); if (r) r.checked = true;
